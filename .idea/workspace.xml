@@ -23,22 +23,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/quiz2/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="27" selection-start="1524" selection-end="1524" vertical-scroll-proportion="0.0" vertical-offset="531" max-vertical-offset="1314">
+            <state line="100" column="1" selection-start="2472" selection-end="2472" vertical-scroll-proportion="0.94721407" vertical-offset="1154" max-vertical-offset="1908">
               <folding>
-                <element signature="e#0#42#1" expanded="true" />
-                <element signature="e#44#53#0" expanded="true" />
+                <element signature="e#0#242#1" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wsgi.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="wsgi.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/quiz2/wsgi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="43" selection-start="279" selection-end="279" vertical-scroll-proportion="0.30379745" vertical-offset="0" max-vertical-offset="711">
+            <state line="12" column="43" selection-start="279" selection-end="279" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="324">
               <folding>
                 <element signature="e#0#38#1" expanded="true" />
                 <element signature="e#40#49#0" expanded="true" />
@@ -57,8 +56,8 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/quiz2/settings.py" />
         <option value="$PROJECT_DIR$/quiz2/wsgi.py" />
+        <option value="$PROJECT_DIR$/quiz2/settings.py" />
       </list>
     </option>
   </component>
@@ -226,22 +225,21 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/quiz2/settings.py">
+    <entry file="file://$PROJECT_DIR$/quiz2/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="27" selection-start="1524" selection-end="1524" vertical-scroll-proportion="0.0" vertical-offset="531" max-vertical-offset="1314">
+        <state line="12" column="43" selection-start="279" selection-end="279" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="324">
           <folding>
-            <element signature="e#0#42#1" expanded="true" />
-            <element signature="e#44#53#0" expanded="true" />
+            <element signature="e#0#38#1" expanded="true" />
+            <element signature="e#40#49#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quiz2/wsgi.py">
+    <entry file="file://$PROJECT_DIR$/quiz2/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="43" selection-start="279" selection-end="279" vertical-scroll-proportion="0.30379745" vertical-offset="0" max-vertical-offset="711">
+        <state line="100" column="1" selection-start="2472" selection-end="2472" vertical-scroll-proportion="0.94721407" vertical-offset="1154" max-vertical-offset="1908">
           <folding>
-            <element signature="e#0#38#1" expanded="true" />
-            <element signature="e#40#49#0" expanded="true" />
+            <element signature="e#0#242#1" expanded="true" />
           </folding>
         </state>
       </provider>
