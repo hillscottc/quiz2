@@ -22,8 +22,24 @@ class CommonModel(models.Model):
         abstract = True
 
 
+class QuestionSet(CommonModel):
+    """Grouped questions."""
+    user = models.ForeignKey(User)
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        unique_together = ("user", "name")
+
+    def __unicode__(self):
+        return self.name
+
+
 class Question(CommonModel):
     text = models.CharField(max_length=255, unique=True)
+    questionset = models.ForeignKey(QuestionSet)
+
+    class Meta:
+        unique_together = ("text", "questionset")
 
     @property
     def questionanswers(self):

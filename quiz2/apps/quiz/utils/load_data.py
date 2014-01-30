@@ -1,13 +1,15 @@
 """Model data for loading."""
-from quiz2.apps.quiz.models import Question, Answer, QuestionAnswer, Tag, QuestionTag
+from quiz2.apps.quiz.models import (Question, Answer, QuestionAnswer, Tag,
+                                    QuestionTag, QuestionSet)
+from django.contrib.auth.models import User
+
+u = User.objects.get(pk=1)
+qs = QuestionSet.objects.create(user=u, name="Test Set 1")
 
 
-# def init_questions():
-#     """Sample data. Dump to provide initial data.
-#       manage.py dumpdata --indent 4 >> fixtures/initial_data.json"""
-#     ## create some number answers
 for i in range(0, 10):
     Answer.objects.create(text=str(i))
+
 
 Tag.objects.create(text="Science")
 Tag.objects.create(text="History")
