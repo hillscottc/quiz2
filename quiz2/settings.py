@@ -79,7 +79,8 @@ USE_L10N = True
 USE_TZ = True
 
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),
+                 os.path.join(BASE_DIR, 'quiz2', 'apps', 'quiz', 'templates')]
 
 ## Added for Heroku
 
