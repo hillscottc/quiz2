@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f6bf6803-0b60-4826-9667-a95d9f5a45c0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quiz2/settings.py" afterPath="$PROJECT_DIR$/quiz2/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="quiz2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,7 +60,7 @@
           <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/quiz2/settings.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="84" column="18" selection-start="2303" selection-end="2303" vertical-scroll-proportion="0.74285716" vertical-offset="692" max-vertical-offset="1602">
+                <state line="72" column="0" selection-start="1924" selection-end="1924" vertical-scroll-proportion="0.50549453" vertical-offset="692" max-vertical-offset="1602">
                   <folding />
                 </state>
               </provider>
@@ -734,7 +732,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/quiz2/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="18" selection-start="2303" selection-end="2303" vertical-scroll-proportion="0.74285716" vertical-offset="692" max-vertical-offset="1602">
+        <state line="72" column="0" selection-start="1924" selection-end="1924" vertical-scroll-proportion="0.50549453" vertical-offset="692" max-vertical-offset="1602">
           <folding />
         </state>
       </provider>

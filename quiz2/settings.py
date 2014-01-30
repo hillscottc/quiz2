@@ -74,8 +74,8 @@ USE_TZ = True
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 ## Add for Heroku
-# import dj_database_url
-# DATABASES['default'] = dj_database_url.config()
+import dj_database_url
+DATABASES['default'] = dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
