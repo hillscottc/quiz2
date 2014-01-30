@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f6bf6803-0b60-4826-9667-a95d9f5a45c0" name="Default" comment="" />
+    <list default="true" id="f6bf6803-0b60-4826-9667-a95d9f5a45c0" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quiz2/settings.py" afterPath="$PROJECT_DIR$/quiz2/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="quiz2.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -43,19 +47,22 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/quiz2/settings.py">
+          <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/templates/base.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="97" column="0" selection-start="2469" selection-end="2469" vertical-scroll-proportion="0.7901099" vertical-offset="883" max-vertical-offset="1818">
-                  <folding />
+                <state line="32" column="7" selection-start="1049" selection-end="1049" vertical-scroll-proportion="-6.6666665" vertical-offset="0" max-vertical-offset="288">
+                  <folding>
+                    <element signature="tag#html#0" expanded="true" />
+                    <element signature="tag#head#0;tag#html#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/templates/base.html">
+          <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/quiz2/settings.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="3" column="24" selection-start="64" selection-end="64" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="684">
+                <state line="84" column="18" selection-start="2303" selection-end="2303" vertical-scroll-proportion="0.74285716" vertical-offset="692" max-vertical-offset="1602">
                   <folding />
                 </state>
               </provider>
@@ -104,6 +111,14 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
@@ -135,7 +150,26 @@
     <option name="width" value="1871" />
     <option name="height" value="1085" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Spelling</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Spelling</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -270,7 +304,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="options.lastSelected" value="Errors" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/quiz2/apps/quiz/templates" />
     <property name="dynamic.classpath" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -643,13 +677,6 @@
         <state line="20" column="5" selection-start="674" selection-end="674" vertical-scroll-proportion="0.2440678" vertical-offset="0" max-vertical-offset="590" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="24" selection-start="64" selection-end="64" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="684">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/quiz2/apps/quiz/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="37" selection-start="207" selection-end="211" vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="378">
@@ -695,9 +722,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="7" selection-start="1049" selection-end="1049" vertical-scroll-proportion="-6.6666665" vertical-offset="0" max-vertical-offset="288">
+          <folding>
+            <element signature="tag#html#0" expanded="true" />
+            <element signature="tag#head#0;tag#html#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/quiz2/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="0" selection-start="2469" selection-end="2469" vertical-scroll-proportion="0.7901099" vertical-offset="883" max-vertical-offset="1818">
+        <state line="84" column="18" selection-start="2303" selection-end="2303" vertical-scroll-proportion="0.74285716" vertical-offset="692" max-vertical-offset="1602">
           <folding />
         </state>
       </provider>

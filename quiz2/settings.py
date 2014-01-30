@@ -23,11 +23,7 @@ SECRET_KEY = '9)@n1zj@d!qj44vf0thtpwrbdbl(dj_+dkr!a928cg1j(o^0sg'
 DEBUG = True
 
 TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = []
-
-
-# Application definition
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -69,28 +65,20 @@ DATABASES = {
     }
 }
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.6/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
-## Added for Heroku
-
+## Add for Heroku
 # import dj_database_url
 # DATABASES['default'] = dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-# Allow all host headers
-ALLOWED_HOSTS = ['*']
 
 # Static asset configuration
 # BASE_DIR = os.path.dirname(os.path.abspath(__file__))
