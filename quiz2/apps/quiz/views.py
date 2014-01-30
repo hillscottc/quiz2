@@ -6,6 +6,7 @@ from quiz2.apps.quiz.models import Question, QuestionAnswer
 from quiz2.apps.quiz.forms import UserForm, UserProfileForm
 from django.contrib.auth.decorators import login_required
 
+
 def home(request):
     return render(request, 'index.html', {})
 
