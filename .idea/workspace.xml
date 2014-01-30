@@ -37,7 +37,7 @@
       <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/quiz2/apps/quiz/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="29" selection-start="588" selection-end="588" vertical-scroll-proportion="0.4297082" vertical-offset="0" max-vertical-offset="754">
+            <state line="34" column="0" selection-start="0" selection-end="1089" vertical-scroll-proportion="0.8116711" vertical-offset="0" max-vertical-offset="754">
               <folding>
                 <element signature="e#0#68#0" expanded="true" />
                 <element signature="e#154#190#0" expanded="true" />
@@ -61,7 +61,7 @@
         </entry>
       </file>
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/quiz/questions/index.html">
+        <entry file="file://$PROJECT_DIR$/quiz2/templates/quiz/questions/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state line="27" column="0" selection-start="733" selection-end="733" vertical-scroll-proportion="-12.666667" vertical-offset="0" max-vertical-offset="450">
               <folding />
@@ -92,7 +92,7 @@
         </entry>
       </file>
       <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/base.html">
+        <entry file="file://$PROJECT_DIR$/quiz2/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
             <state line="32" column="7" selection-start="1062" selection-end="1062" vertical-scroll-proportion="-0.6666667" vertical-offset="0" max-vertical-offset="126">
               <folding />
@@ -186,42 +186,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="quiz2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="quiz2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="quiz" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="questions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="quiz2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="quiz2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -254,29 +218,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="quiz2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="quiz2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="quiz2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="quiz" />
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -306,9 +248,9 @@
       <recent name="$PROJECT_DIR$/quiz2/apps/quiz" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/quiz2" />
       <recent name="$PROJECT_DIR$/quiz2/apps/quiz/templates" />
       <recent name="$PROJECT_DIR$/templates/quiz" />
-      <recent name="$PROJECT_DIR$/quiz2" />
     </key>
   </component>
   <component name="RunManager" selected="Django server.quiz2">
@@ -631,7 +573,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
+    <entry file="file://$PROJECT_DIR$/quiz2/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="7" selection-start="1062" selection-end="1062" vertical-scroll-proportion="-0.6666667" vertical-offset="0" max-vertical-offset="126">
           <folding />
@@ -674,7 +616,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/quiz/questions/index.html">
+    <entry file="file://$PROJECT_DIR$/quiz2/templates/quiz/questions/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="0" selection-start="733" selection-end="733" vertical-scroll-proportion="-12.666667" vertical-offset="0" max-vertical-offset="450">
           <folding />
@@ -683,7 +625,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/quiz2/apps/quiz/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="29" selection-start="588" selection-end="588" vertical-scroll-proportion="0.4297082" vertical-offset="0" max-vertical-offset="754">
+        <state line="34" column="0" selection-start="0" selection-end="1089" vertical-scroll-proportion="0.8116711" vertical-offset="0" max-vertical-offset="754">
           <folding>
             <element signature="e#0#68#0" expanded="true" />
             <element signature="e#154#190#0" expanded="true" />
