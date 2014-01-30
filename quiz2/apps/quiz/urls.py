@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
 
-    url(r'^$', views.index, name='home'),
+    url(r'^$', views.home, name='home'),
     url(r'questions/$', views.questions_index, name='questions_index'),
 
     url(r'question/(?P<question_id>\d+)/$', views.question, name='question'),
