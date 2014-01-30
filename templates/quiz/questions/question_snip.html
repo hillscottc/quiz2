@@ -1,6 +1,6 @@
 <li style="padding-bottom:5px">
     <div class="question">
-        {# <a href="{% url 'quiz1:question' question.id %}">{{ question }}</a> #}
+        {# <a href="{% url 'question' question.id %}">{{ question }}</a> #}
         {{ question }}
     <span class="tag_list">
         ({{ question.questiontags|join:", " }})

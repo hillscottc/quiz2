@@ -3,7 +3,7 @@ from quiz2.apps.quiz.models import Question, QuestionAnswer
 
 
 def home(request):
-    return HttpResponse("Hello, world.")
+    return render(request, 'index.html', {})
 
 
 def questions_index(request):
@@ -13,7 +13,7 @@ def questions_index(request):
     else:
         question_list = Question.objects.all()
         context = {'question_list': question_list}
-        return render(request, 'quiz/questions/index.html', context)
+        return render(request, 'quiz/questions/questions_list.html', context)
 
 
 def question(request, question_id):

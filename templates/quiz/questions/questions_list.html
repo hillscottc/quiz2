@@ -6,11 +6,11 @@
 
     {% if question_list %}
         <div class="question_list">
-            <form action="{% url 'quiz1:questions_index' %}" method="post">
+            <form action="{% url 'questions_index' %}" method="post">
                 {% csrf_token %}
                 <ul>
                     {% for question in question_list %}
-                        {% include "questions/question_snip.html" %}
+                        {% include "quiz/questions/question_snip.html" %}
                     {% endfor %}
                 </ul>
                 <div id="response_div"</div>

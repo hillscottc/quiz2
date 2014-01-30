@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    <form action="{% url 'quiz1:question' question.id %}" method="post">{% csrf_token %}
+    <form action="{% url 'question' question.id %}" method="post">{% csrf_token %}
         {% include "questions/question_snip.html" %}
     </form>
 
