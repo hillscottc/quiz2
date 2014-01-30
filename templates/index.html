@@ -3,9 +3,15 @@
 {% block title %}{{ section.title }}{% endblock %}
 
 {% block content %}
-<h1>{{ section.title }}</h1>
+    <h1>{{ section.title }}</h1>
 
-    Welcome
+
+    {% if user.is_authenticated %}
+        <h1>Welcome... hello {{ user.username }}!</h1>
+    {% else %}
+        <h1>Welcome</h1>
+    {% endif %}
+
 
 {% endblock %}
 
