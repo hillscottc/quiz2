@@ -1,0 +1,16 @@
+{% extends "base_questions.html" %}
+
+
+{% block content %}
+
+    <form action="{% url 'quiz1:question' question.id %}" method="post">{% csrf_token %}
+        {% include "questions/question_snip.html" %}
+    </form>
+
+    {% load static %}
+    <script src="{% static "js/questions.js" %}"></script>
+    
+{% endblock %}
+
+
+
