@@ -13,7 +13,7 @@ def questions_index(request):
     else:
         question_list = Question.objects.all()
         context = {'question_list': question_list}
-        return render(request, 'questions/index.html', context)
+        return render(request, 'quiz/questions/index.html', context)
 
 
 def question(request, question_id):
@@ -21,7 +21,7 @@ def question(request, question_id):
         return HttpResponse("Thanks for answering question %s" % question_id)
     else:
         question = get_object_or_404(Question, pk=question_id)
-        return render(request, 'questions/question.html', {'question': question})
+        return render(request, 'quiz/questions/question.html', {'question': question})
 
 
 def post_answer(request, question_id, qa_id):
