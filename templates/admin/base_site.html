@@ -1,0 +1,11 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'Scott Django site admin' %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans "Administration" %} for <a href="/quiz/">The Quiz Site</a></h1> 
+{% endblock %}
+
+
+{% block nav-global %}{% endblock %}
