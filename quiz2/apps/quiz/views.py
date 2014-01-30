@@ -1,10 +1,10 @@
 from django.shortcuts import (HttpResponse, render, get_object_or_404,
                               RequestContext, render_to_response,
                               HttpResponseRedirect)
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from quiz2.apps.quiz.models import Question, QuestionAnswer
 from quiz2.apps.quiz.forms import UserForm, UserProfileForm
-
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     return render(request, 'index.html', {})
@@ -120,7 +120,7 @@ def user_login(request):
                 # If the account is valid and active, we can log the user in.
                 # We'll send the user back to the homepage.
                 login(request, user)
-                return HttpResponseRedirect('/rango/')
+                return HttpResponseRedirect('/')
             else:
                 # An inactive account was used - no logging in!
                 return HttpResponse("Your Rango account is disabled.")
@@ -135,3 +135,9 @@ def user_login(request):
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
         return render_to_response('login.html', {}, context)
+
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/')

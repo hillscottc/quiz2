@@ -77,6 +77,9 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/desktop/logout/'
+
 # Needed for heroku....can't use for local
 # import dj_database_url
 # DATABASES['default'] = dj_database_url.config()
