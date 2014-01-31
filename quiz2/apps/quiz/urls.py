@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from quiz2.apps.quiz import views
+# from quiz2.apps.quiz.admin import quiz_admin_site
 
 from django.contrib import admin
 admin.autodiscover()
