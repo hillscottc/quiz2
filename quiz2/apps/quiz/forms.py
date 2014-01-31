@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from quiz2.apps.quiz.models import UserProfile, Question, QuestionAnswer
+from quiz2.apps.quiz.models import Question, QuestionAnswer, UserProfile
 from django.forms.models import inlineformset_factory
 
 

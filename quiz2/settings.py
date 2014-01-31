@@ -1,13 +1,3 @@
-"""
-Django settings for quiz2 project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.6/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.6/ref/settings/
-"""
-
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -41,13 +31,6 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'quiz2.urls'
 WSGI_APPLICATION = 'quiz2.wsgi.application'
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 
 DATABASES = {
     'default': {
