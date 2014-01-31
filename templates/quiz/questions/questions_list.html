@@ -2,21 +2,16 @@
 
 
 {% block content %}
-    <h1>{{ section.title }}</h1>
+    <h2>{{ questionset }}</h2>
 
     {% if question_list %}
         <div class="question_list">
-            <form action="{% url 'questions_index' %}" method="post">
-                {% csrf_token %}
-                <ul>
-                    {% for question in question_list %}
-                        {% include "quiz/questions/question_snip.html" %}
-                    {% endfor %}
-                </ul>
-                <div id="response_div"</div>
-            </form>
+            <ul>
+                {% for question in question_list %}
+                    {% include "quiz/questions/question_snip.html" %}
+                {% endfor %}
+            </ul>
         </div>
-        </form>
     {% else %}
         <p>No questions are available.</p>
     {% endif %}

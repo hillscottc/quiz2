@@ -1,0 +1,20 @@
+{% extends "base_questions.html" %}
+
+
+{% block content %}
+    <h2>Question Sets</h2>
+
+    {% if questionset_list %}
+        <div class="questionset_list">
+            <ul>
+                {% for qs in questionset_list %}
+                    <li><a href="{% url 'questions_index' qs.id %}">{{ qs }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <p>No question sets are available.</p>
+    {% endif %}
+
+
+{% endblock %}

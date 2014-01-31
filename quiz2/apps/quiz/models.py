@@ -23,7 +23,7 @@ class CommonModel(models.Model):
 
 
 class QuestionSet(CommonModel):
-    """Grouped questions."""
+    """Groups the questions."""
     user = models.ForeignKey(User)
     name = models.CharField(max_length=100)
 

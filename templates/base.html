@@ -15,16 +15,13 @@
     <div id="navigation">
         <ul>
             <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'questions_index' %}">Questions</a></li>
+            <li><a href="{% url 'questionsets_index' %}">Question Sets</a></li>
             {% if user.is_authenticated %}
                 <li><a href="{% url 'logout' %}">Logout</a></li>
             {% else %}
                 <li><a href="{% url 'register' %}">Register</a></li>
                 <li><a href="{% url 'login' %}">Login</a></li>
             {% endif %}
-            {# <li><a href="/admin/">Admin</a></li>#}
-            {# <li><a href="{% url 'quiz1:question_answer' %}">Question Answer</a></li>#}
-            {# <li><a href="{% url 'quiz1:question_answer' '3' %}">Question Answer 3</a></li>#}
         </ul>
     </div>
     <div id="content">

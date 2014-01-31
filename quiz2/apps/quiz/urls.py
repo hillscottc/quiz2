@@ -1,6 +1,5 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
 from quiz2.apps.quiz import views
-# from quiz2.apps.quiz.admin import quiz_admin_site
 
 from django.contrib import admin
 admin.autodiscover()
@@ -8,12 +7,12 @@ admin.autodiscover()
 urlpatterns = patterns(
     '',
     url(r'^$', views.home, name='home'),
-    url(r'questions/$', views.questions_index, name='questions_index'),
-    url(r'question/(?P<question_id>\d+)/$', views.question, name='question'),
-    url(r'post_answer/(?P<question_id>\d+)/(?P<qa_id>\d+)/$', views.post_answer, name='post_answer'),
+    url(r'questions/(?P<set_id>\d+)/$', views.questions_index, name='questions_index'),
+
+    url(r'sets/$', views.questionsets_index, name='questionsets_index'),
+
+    url(r'post_answer/(?P<qa_id>\d+)/$', views.post_answer, name='post_answer'),
     url(r'register/$', views.register, name='register'),
     url(r'^login/$', views.user_login, name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
-
-    url(r'^admin/', include(admin.site.urls)),
 )
