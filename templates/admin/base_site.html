@@ -1,11 +1,24 @@
 {% extends "admin/base.html" %}
 {% load i18n %}
 
-{% block title %}{{ title }} | {% trans 'Admin' %}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block branding %}
-<h1 id="site-name">{% trans "Administration" %} for <a href="/quiz/">The Quiz Site</a></h1>
+<h1 id="site-name">{% trans "Administration" %} for <a href="/quiz/">Scott's Quiz Site</a></h1>
 {% endblock %}
 
 
 {% block nav-global %}{% endblock %}
+
+{% block footer %}
+<div id="footer">
+<h2>Instructions:</h2>
+<p><b>Question sets</b> are created to group the questions into specfic 'Tests'.</p>
+<br/>
+<p><b>Answers</b> are initially created independently of questions. They can contain explanatory notes.</p>
+<p><b>Question answers</b> are used to assign the possible Answer choices to a Question, and indicating whether the Answer is correct for that particular Question.</p>
+<br/>
+<p><b>Tags</b> are the possible categories of questions. (Math, Science, etc.)</p>
+<p><b>Question tags</b> are used to assign one or more of the Tags to specific questions.</p>
+</div>
+{% endblock %}
