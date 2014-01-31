@@ -1,3 +1,4 @@
+"""Top level site urls."""
 from django.conf.urls import patterns, include, url
 from quiz2 import views
 
