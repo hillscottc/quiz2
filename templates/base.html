@@ -3,37 +3,49 @@
 <head>
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static "css/style.css" %}" />
-    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}"
-          rel="stylesheet" media="screen">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
     <title>{% block title %}{% endblock %}</title>
 </head>
 
 <body>
 <div id="container">
-    <div id="header">
-        <h1>Scott's Quiz Site</h1>
-    </div>
-    <div id="navigation">
-        <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'quiz_index' %}">Quizzes</a></li>
-            {% if user.is_authenticated %}
-                <li><a href="{% url 'logout' %}">Logout</a></li>
-            {% else %}
-                <li><a href="{% url 'register' %}">Register</a></li>
-                <li><a href="{% url 'login' %}">Login</a></li>
-            {% endif %}
-        </ul>
-    </div>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'home' %}">Scott's Quiz Site</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{% url 'quiz_index' %}">Quizzes</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'register' %}">Register</a></li>
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+                {% if user.is_authenticated %}
+                    <p class="navbar-text pull-right">Signed in as {{ user.username }}</p>
+                {% endif %}
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
     <div id="content">
         {% block content %}{% endblock %}
     </div>
-    <div id="footer">
-        Copyright © Scott's Quiz Site 2014
-    </div>
 </div>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 
 </body>

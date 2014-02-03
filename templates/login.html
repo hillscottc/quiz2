@@ -4,18 +4,18 @@
 
 {% block content %}
 
-    <h1>Login</h1>
+    <link href="signin.css" rel="stylesheet">
 
-    <form id="login_form" method="post" action="{% url 'login' %}">
+    <form id="login_form" class="form-signin" role="form" method="post" action="{% url 'login' %}">
         {% csrf_token %}
-        Username: <input type="text" name="username" value="" size="50" />
-        <br />
-        Password: <input type="password" name="password" value="" size="50" />
-        <br />
-
-        <input type="submit" value="submit" />
+        <h2 class="form-signin-heading">Please sign in</h2>
+        {#<input type="email" class="form-control" placeholder="Email address" required autofocus>#}
+        <input type="text" class="form-control" name="username" required autofocus />
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 
 {% endblock %}
-
-
