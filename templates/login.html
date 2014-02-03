@@ -3,7 +3,7 @@
 {% block title %}{{ section.title }}{% endblock %}
 
 {% block content %}
-
+    {% load staticfiles %}
     <link rel="stylesheet" href="{% static "css/signin.css" %}" />
 
     <form id="login_form" class="form-signin" role="form" method="post" action="{% url 'login' %}">
