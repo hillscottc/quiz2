@@ -6,7 +6,8 @@ from django.contrib.auth.decorators import login_required
 
 
 def home(request):
-    return render(request, 'home.html', {})
+    # return render(request, 'home.html', {})
+    return render(request, 'splash.html', {})
 
 
 def register(request):
