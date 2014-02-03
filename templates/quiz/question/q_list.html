@@ -1,14 +1,14 @@
-{% extends "base_questions.html" %}
+{% extends "quiz/quiz_base.html" %}
 
 
 {% block content %}
     <h2>{{ questionset }}</h2>
 
-    {% if question_list %}
+    {% if q_list %}
         <div class="question_list">
             <ul>
-                {% for question in question_list %}
-                    {% include "quiz/questions/question_snip.html" %}
+                {% for question in q_list %}
+                    {% include "quiz/question/snip.html" %}
                 {% endfor %}
             </ul>
         </div>

@@ -1,17 +1,16 @@
 <li style="padding-bottom:5px">
     <div class="question">
-        {# <a href="{% url 'question' question.id %}">{{ question }}</a> #}
         {{ question }}
     <span class="tag_list">
-        ({{ question.questiontags|join:", " }})
+        ({{ question.tags|join:", " }})
     </span>
     </div>
     <div class="answer_list">
         <ul>
-            {% for qa in question.questionanswers %}
+            {% for answer in question.answers %}
                 <li><input class="radio_answer" type="radio" 
                      name="{{ question.id }}" 
-                     value="{{ qa.id }}"> {{ qa.answer }}</li>
+                     value="{{ answer.id }}"> {{ answer.text }}</li>
             {% endfor %}
         </ul>
     </div>

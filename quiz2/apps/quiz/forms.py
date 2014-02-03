@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from quiz2.apps.quiz.models import Question, QuestionAnswer, UserProfile
+from quiz2.apps.quiz.models import Question, UserProfile
 from django.forms.models import inlineformset_factory
 
 
@@ -19,17 +19,17 @@ class UserProfileForm(forms.ModelForm):
         fields = ('website',)
 
 
-class QuestionForm(forms.ModelForm):
-    class Meta:
-        model = Question
-
-
-class QuestionAnswerForm(forms.ModelForm):
-    class Meta:
-        model = QuestionAnswer
-
-QuestionAnswerFormSet = inlineformset_factory(Question, QuestionAnswer, extra=1)
-
-
-
-
+# class QuestionForm(forms.ModelForm):
+#     class Meta:
+#         model = Question
+#
+#
+# class QuestionAnswerForm(forms.ModelForm):
+#     class Meta:
+#         model = QuestionAnswer
+#
+# QuestionAnswerFormSet = inlineformset_factory(Question, QuestionAnswer, extra=1)
+#
+#
+#
+#

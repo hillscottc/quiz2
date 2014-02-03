@@ -8,12 +8,12 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    url(r'^$', views.home, name='home'),
-    url(r'questions/(?P<set_id>\d+)/$', views.questions_index, name='questions_index'),
+    # url(r'^$', views.home, name='home'),
+    url(r'^$', views.quiz_index, name='quiz_index'),
+    url(r'^quiz/(?P<quiz_id>\d+)/$', views.quiz_questions, name='quiz_questions'),
+    url(r'^post_answer/(?P<a_id>\d+)/$', views.post_answer, name='post_answer'),
 
-    url(r'sets/$', views.questionsets_index, name='questionsets_index'),
-
-    url(r'post_answer/(?P<qa_id>\d+)/$', views.post_answer, name='post_answer'),
+    # url(r'set/(?P<set_id>\d+)/question/add/$', views.question_add),
 
     url(r'admin/', include(quiz_admin_site.urls)),
 

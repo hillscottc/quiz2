@@ -8,9 +8,9 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    url(r'^$', 'quiz2.apps.quiz.views.home', name='home'),
+    url(r'^$', views.home, name='home'),
 
-    url(r'register/$', views.register, name='register'),
+    url(r'^register/$', views.register, name='register'),
     url(r'^login/$', views.user_login, name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
 

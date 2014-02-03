@@ -1,0 +1,22 @@
+{% extends "quiz/quiz_base.html" %}
+
+{% block content %}
+    <h2>Quizzes</h2>
+
+    {% if quiz_list %}
+        <div class="quiz_list">
+            <ul>
+                {% for quiz in quiz_list %}
+                    <li><a href="{% url 'quiz_questions' quiz.id %}">{{ quiz }}</a>
+{#                    <a href="/quiz/set/{{ qs.id }}/question/add/">add question</a>#}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <p>No question sets are available.</p>
+    {% endif %}
+
+{#    <p><a href="/quiz/admin/">Question Administration</a></p>#}
+
+{% endblock %}

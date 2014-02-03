@@ -1,7 +1,12 @@
-from django.shortcuts import HttpResponse, RequestContext, render_to_response, HttpResponseRedirect
+from django.shortcuts import (HttpResponse, RequestContext, render,
+                              render_to_response, HttpResponseRedirect)
 from django.contrib.auth import authenticate, login, logout
 from quiz2.apps.quiz.forms import UserForm, UserProfileForm
 from django.contrib.auth.decorators import login_required
+
+
+def home(request):
+    return render(request, 'home.html', {})
 
 
 def register(request):

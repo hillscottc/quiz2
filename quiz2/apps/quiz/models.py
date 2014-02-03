@@ -22,7 +22,7 @@ class CommonModel(models.Model):
         abstract = True
 
 
-class QuestionSet(CommonModel):
+class Quiz(CommonModel):
     """Groups the questions."""
     user = models.ForeignKey(User)
     name = models.CharField(max_length=100)
@@ -35,18 +35,18 @@ class QuestionSet(CommonModel):
 
 
 class Question(CommonModel):
+    quiz = models.ForeignKey(Quiz)
     text = models.CharField(max_length=255, unique=True)
-    questionset = models.ForeignKey(QuestionSet)
 
     class Meta:
-        unique_together = ("text", "questionset")
+        unique_together = ("text", "quiz")
 
     @property
-    def questionanswers(self):
-        return self.questionanswer_set.all()
+    def answers(self):
+        return self.answer_set.all()
 
     @property
-    def questiontags(self):
+    def tags(self):
         # return self.questiontag_set.all()
         return [qt.tag for qt in self.questiontag_set.all()]
 
@@ -55,20 +55,25 @@ class Question(CommonModel):
 
 
 class Answer(CommonModel):
+    question = models.ForeignKey(Question)
     text = models.CharField(max_length=50, unique=True)
+    correct = models.BooleanField(default=False)
     notes = models.CharField(max_length=100, blank=True)
 
     def __unicode__(self):
         return self.text
 
+    class Meta:
+        unique_together = ("question", "text")
 
-class QuestionAnswer(CommonModel):
-    question = models.ForeignKey(Question)
-    answer = models.ForeignKey(Answer)
-    correct = models.BooleanField(default=False)
 
-    def __unicode__(self):
-        return "{}...{}...{}".format(self.question.text[:50], self.answer.text[:30], self.correct)
+# class QuestionAnswer(CommonModel):
+#     question = models.ForeignKey(Question)
+#     answer = models.ForeignKey(Answer)
+#     correct = models.BooleanField(default=False)
+#
+#     def __unicode__(self):
+#         return "{}...{}...{}".format(self.question.text[:50], self.answer.text[:30], self.correct)
 
 
 class Tag(CommonModel):
@@ -84,3 +89,6 @@ class QuestionTag(CommonModel):
 
     def __unicode__(self):
         return "{}...{}".format(self.question.text[:30], self.tag.text)
+
+    class Meta:
+        unique_together = ("question", "tag")
