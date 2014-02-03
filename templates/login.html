@@ -6,7 +6,8 @@
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static "css/signin.css" %}" />
 
-    <form id="login_form" class="form-signin" role="form" method="post" action="{% url 'login' %}">
+    <form id="login_form" class="form-signin" role="form" method="post"
+          action="{% url 'login' %}">
         {% csrf_token %}
         <h2 class="form-signin-heading">Please sign in</h2>
         {#<input type="email" class="form-control" placeholder="Email address" required autofocus>#}
