@@ -1,0 +1,22 @@
+{% extends "quiz/quiz_base.html" %}
+
+
+{% block content %}
+
+    <h2>Manage Answers</h2>
+    <h3>Quiz</h3>
+    {{ question.quiz }}
+
+    <h3>Question</h3>
+    {{ question }}
+    <h3>Answers</h3>
+    <form method="post" action="">
+        {% csrf_token %}
+        <table>
+            {{ formset }}
+        </table>
+    </form>
+{% endblock %}
+
+
+

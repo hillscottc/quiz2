@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from quiz2.apps.quiz.models import Question, UserProfile
+from quiz2.apps.quiz.models import Question, UserProfile, Answer
 from django.forms.models import inlineformset_factory
 
 
@@ -19,9 +19,22 @@ class UserProfileForm(forms.ModelForm):
         fields = ('website',)
 
 
-# class QuestionForm(forms.ModelForm):
-#     class Meta:
-#         model = Question
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+
+
+class QuestionForm(forms.ModelForm):
+
+    class Meta:
+        model = Question
+        exclude = ('created_at', 'updated_at')
+
+    def __init__(self, user, *args, **kwargs):
+        super(QuestionForm, self).__init__(*args, **kwargs)
+        if not user.is_authenticated():
+            # self.fields['captcha'] = CaptchaField()
+            pass
 #
 #
 # class QuestionAnswerForm(forms.ModelForm):

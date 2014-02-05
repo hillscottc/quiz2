@@ -64,5 +64,5 @@ LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 
 ## Needed for heroku....can't use for local
-import dj_database_url
-DATABASES['default'] = dj_database_url.config()
+# import dj_database_url
+# DATABASES['default'] = dj_database_url.config()
