@@ -1,0 +1,60 @@
+{% extends "quiz/quiz_base.html" %}
+
+
+{% block content %}
+
+    <h2>Manage Quiz</h2>
+    <h3>Quiz</h3>
+    {{ quiz }}
+    <h3>Questions</h3>
+
+
+<form method="post" action="">
+{% csrf_token %}
+    {{ formset.management_form }}
+    {% for form in formset %}
+        {{ form.id }}
+        <ul>
+            <li>
+{#                 Widget display is too ugly       #}
+{#                {% if formset.can_order %}#}
+{#                    {{ form.ORDER }}#}
+{#                {% endif %}#}
+
+{#                {{ form.instance.text }}#}
+
+
+                <a href="/quiz/manage_question/{{ form.instance.pk }}/">
+                {% if form.instance.text %}
+                      {{form.instance.text}}
+                {% else %}
+                      {{form.data.text}}
+                {% endif %}
+                </a>
+
+{#                 Widget display is too ugly       #}
+{#                {% if formset.can_delete %}#}
+{#                    {{ form.DELETE }} DELETE#}
+{#                {% endif %}#}
+            <div>
+{#            (<a href="/quiz/manage_answers/{{ form.instance.pk }}/">manage answers</a>)#}
+
+            <ul>
+            {% for answer in form.instance.answers %}
+                <li>{{ answer.text }}
+                {% if answer.correct %}
+                (CORRECT)
+                {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+            </div>
+            </li>
+        </ul>
+    {% endfor %}
+    <a href="/quiz/question_add/{{ quiz.id }}/">add a question</a>
+</form>
+{% endblock %}
+
+
+

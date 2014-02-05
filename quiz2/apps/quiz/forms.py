@@ -25,7 +25,6 @@ class AnswerForm(forms.ModelForm):
 
 
 class QuestionForm(forms.ModelForm):
-
     class Meta:
         model = Question
         exclude = ('created_at', 'updated_at')
@@ -35,14 +34,4 @@ class QuestionForm(forms.ModelForm):
         if not user.is_authenticated():
             # self.fields['captcha'] = CaptchaField()
             pass
-#
-#
-# class QuestionAnswerForm(forms.ModelForm):
-#     class Meta:
-#         model = QuestionAnswer
-#
-# QuestionAnswerFormSet = inlineformset_factory(Question, QuestionAnswer, extra=1)
-#
-#
-#
-#
+

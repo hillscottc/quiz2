@@ -10,7 +10,7 @@
 
                     <li>{{ quiz }}
                         (<a href="{% url 'quiz_questions' quiz.id %}">take</a>,
-                        <a href="/quiz/manage_questions/{{ quiz.id }}/">manage</a>)
+                        <a href="{% url 'quiz2.apps.quiz.views.manage_quiz' quiz.id %}">manage</a>)
                     </li>
                 {% endfor %}
             </ul>

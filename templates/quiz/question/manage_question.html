@@ -1,0 +1,32 @@
+{% extends "quiz/quiz_base.html" %}
+
+
+{% block content %}
+
+    <h2>Manage Question</h2>
+    <h3>Quiz</h3>
+    {{ quiz }}
+    <h3>Question</h3>
+    <form method="post" id="question_form" action="">
+        {% csrf_token %}
+        {{ form.id }}
+        {{ form.text }}
+        <input type="submit" value="Update Question">
+        <div>
+            <ul>
+                {% for answer in answers %}
+                    <li>{{ answer.text }}
+                        {% if answer.correct %}
+                            (CORRECT)
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'quiz2.apps.quiz.views.manage_answers' question_id %}">manage answers</a>
+        </div>
+    </form>
+
+{% endblock %}
+
+
+

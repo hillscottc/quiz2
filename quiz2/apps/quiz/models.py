@@ -66,16 +66,6 @@ class Answer(CommonModel):
     class Meta:
         unique_together = ("question", "text")
 
-
-# class QuestionAnswer(CommonModel):
-#     question = models.ForeignKey(Question)
-#     answer = models.ForeignKey(Answer)
-#     correct = models.BooleanField(default=False)
-#
-#     def __unicode__(self):
-#         return "{}...{}...{}".format(self.question.text[:50], self.answer.text[:30], self.correct)
-
-
 class Tag(CommonModel):
     text = models.CharField(max_length=25, unique=True)
 
