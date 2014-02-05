@@ -1,4 +1,6 @@
 import os
+from os import environ
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -63,6 +65,8 @@ STATICFILES_DIRS = (
 LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 
-## Needed for heroku....can't use for local
-# import dj_database_url
-# DATABASES['default'] = dj_database_url.config()
+
+## In the heroku environ this will be set
+if 'DATABASE_URL' in environ:
+    import dj_database_url
+    DATABASES['default'] = dj_database_url.config()
