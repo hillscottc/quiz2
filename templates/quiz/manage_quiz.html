@@ -50,7 +50,8 @@
                 </li>
             </ul>
         {% endfor %}
-        <a href="/quiz/question_add/{{ quiz.id }}/">add a question</a>
+        <a href="{% url 'quiz2.apps.quiz.views.question_add' quiz.id %}">add a question</a>
+
     </form>
 {% endblock %}
 

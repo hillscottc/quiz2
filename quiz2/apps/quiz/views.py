@@ -1,10 +1,11 @@
 from django.shortcuts import HttpResponse, render, render_to_response
+
 from quiz2.apps.quiz.models import Quiz, Question, Answer
 from quiz2.apps.quiz.forms import QuestionForm, AnswerForm
 
 from django.contrib.auth.decorators import login_required
 from django.forms.models import formset_factory, inlineformset_factory, modelformset_factory
-
+from django.forms import HiddenInput
 
 def quiz_index(request):
     """List all quizzes."""
@@ -63,8 +64,7 @@ def manage_question(request, question_id):
         if form.is_valid():
             return HttpResponse("Thanks for answering. You posted %s" % request.REQUEST)
     else:
-        form = QuestionForm(user=request.user,
-                            initial={'quiz': question.quiz,
+        form = QuestionForm(initial={'quiz': question.quiz,
                                      'text': question.text,
                                      'answers': Answer.objects.filter(question=question)})
 
@@ -95,22 +95,21 @@ def manage_answer(request, answer_id):
                    'question': question})
 
 
+@login_required
+def question_add(request, quiz_id):
+    quiz = Quiz.objects.get(pk=quiz_id)
+    if request.method == 'POST':
+        form = QuestionForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Saved! You posted %s" % request.REQUEST)
+    else:
+        form = QuestionForm(initial={'quiz': quiz,
+                                     'user': request.user})
+        form.fields['quiz'].widget = HiddenInput()
 
-
-# @login_required
-# def question_add(request, quiz_id):
-#     quiz = Quiz.objects.get(pk=quiz_id)
-#     if request.method == 'POST':
-#         form = QuestionForm(request.POST)
-#         if form.is_valid():
-#             return HttpResponse("Thanks for answering. You posted %s" % request.REQUEST)
-#     else:
-#         form = QuestionForm(request.user,
-#                             initial={'quiz': quiz})
-#
-#     return render(request, 'quiz/question/add.html', {
-#         'quiz': quiz, 'form': form,
-#     })
+    return render(request, 'quiz/question/add.html',
+                  {'quiz': quiz, 'form': form})
 
 
 ## This works, but not used right now. Uses formset.

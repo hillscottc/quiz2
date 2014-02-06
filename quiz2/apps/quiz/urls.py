@@ -23,7 +23,7 @@ urlpatterns = patterns(
     # url(r'manage_answers/(?P<question_id>\d+)/$', views.manage_answers),
 
 
-    # url(r'question_add/(?P<quiz_id>\d+)/$', views.question_add),
+    url(r'question_add/(?P<quiz_id>\d+)/$', views.question_add),
 
     ## Works, but unused for now
     # url(r'manage_questions/(?P<quiz_id>\d+)/$', views.manage_questions),

@@ -30,9 +30,9 @@ class QuestionForm(forms.ModelForm):
         exclude = ('created_at', 'updated_at')
 
     ## Init this one with user also. MAybe not needed.
-    def __init__(self, user, *args, **kwargs):
-        super(QuestionForm, self).__init__(*args, **kwargs)
-        if not user.is_authenticated():
-            # self.fields['captcha'] = CaptchaField()
-            pass
+    # def __init__(self, user, *args, **kwargs):
+    #     super(QuestionForm, self).__init__(*args, **kwargs)
+    #     if not user.is_authenticated():
+    #         # self.fields['captcha'] = CaptchaField()
+    #         pass
 

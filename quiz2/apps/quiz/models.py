@@ -66,6 +66,7 @@ class Answer(CommonModel):
     class Meta:
         unique_together = ("question", "text")
 
+
 class Tag(CommonModel):
     text = models.CharField(max_length=25, unique=True)
 
