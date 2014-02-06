@@ -24,6 +24,7 @@ urlpatterns = patterns(
 
 
     url(r'question_add/(?P<quiz_id>\d+)/$', views.question_add),
+    url(r'answer_add/(?P<question_id>\d+)/$', views.answer_add),
 
     ## Works, but unused for now
     # url(r'manage_questions/(?P<quiz_id>\d+)/$', views.manage_questions),

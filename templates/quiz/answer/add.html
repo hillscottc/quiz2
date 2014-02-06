@@ -1,0 +1,40 @@
+{% extends "quiz/quiz_base.html" %}
+
+
+{% block content %}
+
+    <h2>Add Answer </h2>
+    <h3>Quiz</h3>
+    {{ quiz }}
+    <h3>New Question</h3>
+    <form action="{% url 'quiz2.apps.quiz.views.answer_add' question.id %}" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {#        {% for field in form %}#}
+        {#            <div class="fieldWrapper">#}
+        {#                {{ field.errors }}#}
+        {#                {{ field.label_tag }} {{ field }}#}
+        {#            </div>#}
+        {#        {% endfor %}#}
+
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+     {% for field in form.visible_fields %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+        </div>
+    {% endfor %}
+
+
+        <p><input type="submit" value="Add Answer" /></p>
+
+    </form>
+
+{% endblock %}
+
+
+

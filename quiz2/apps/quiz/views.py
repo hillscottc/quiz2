@@ -112,6 +112,24 @@ def question_add(request, quiz_id):
                   {'quiz': quiz, 'form': form})
 
 
+
+@login_required
+def answer_add(request, question_id):
+    question = Question.objects.get(pk=question_id)
+    # quiz = Quiz.objects.get(question=question)
+    if request.method == 'POST':
+        form = AnswerForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Saved! You posted %s" % request.REQUEST)
+    else:
+        form = AnswerForm(initial={'question': question})
+        form.fields['question'].widget = HiddenInput()
+
+    return render(request, 'quiz/answer/add.html',
+                  {'question': question,
+                   'form': form})
+
 ## This works, but not used right now. Uses formset.
 # def manage_questions(request, quiz_id):
 #     quiz = Quiz.objects.get(pk=quiz_id)
