@@ -98,3 +98,8 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+
+@login_required
+def user_account(request):
+    return render(request, 'registration/user_account.html', {})

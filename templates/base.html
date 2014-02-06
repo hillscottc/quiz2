@@ -35,7 +35,9 @@
                     {% endif %}
                 </ul>
                 {% if user.is_authenticated %}
-                    <p class="navbar-text pull-right">Signed in as {{ user.username }}</p>
+                    <p class="navbar-text pull-right">
+                        Signed in as <a href="{% url 'user_account' %}">{{ user.username }}</a>
+                    </p>
                 {% endif %}
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
