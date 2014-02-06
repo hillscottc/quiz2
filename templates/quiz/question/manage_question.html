@@ -15,15 +15,18 @@
         <div>
             <ul>
                 {% for answer in answers %}
-                    <li>{{ answer.text }}
-                        {% if answer.correct %}
-                            (CORRECT)
-                        {% endif %}
+                    <li>
+                        <a href="{% url 'quiz2.apps.quiz.views.manage_answer' answer.pk %}">
+                            {{ answer.text }}
+                            {% if answer.correct %}
+                                (CORRECT)
+                            {% endif %}
+                        </a>
                     </li>
                 {% endfor %}
             </ul>
-            <a href="{% url 'quiz2.apps.quiz.views.manage_answers' question_id %}">manage answers</a>
         </div>
+
     </form>
 
 {% endblock %}

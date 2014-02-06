@@ -16,7 +16,11 @@ urlpatterns = patterns(
 
     url(r'manage_quiz/(?P<quiz_id>\d+)/$', views.manage_quiz),
     url(r'manage_question/(?P<question_id>\d+)/$', views.manage_question),
-    url(r'manage_answers/(?P<question_id>\d+)/$', views.manage_answers),
+
+
+
+    url(r'manage_answer/(?P<answer_id>\d+)/$', views.manage_answer),
+    # url(r'manage_answers/(?P<question_id>\d+)/$', views.manage_answers),
 
 
     # url(r'question_add/(?P<quiz_id>\d+)/$', views.question_add),

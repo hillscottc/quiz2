@@ -9,51 +9,49 @@
     <h3>Questions</h3>
 
 
-<form method="post" action="">
-{% csrf_token %}
-    {{ formset.management_form }}
-    {% for form in formset %}
-        {{ form.id }}
-        <ul>
-            <li>
-{#                 Widget display is too ugly       #}
-{#                {% if formset.can_order %}#}
-{#                    {{ form.ORDER }}#}
-{#                {% endif %}#}
-
-{#                {{ form.instance.text }}#}
-
-
-                <a href="/quiz/manage_question/{{ form.instance.pk }}/">
-                {% if form.instance.text %}
-                      {{form.instance.text}}
-                {% else %}
-                      {{form.data.text}}
-                {% endif %}
-                </a>
-
-{#                 Widget display is too ugly       #}
-{#                {% if formset.can_delete %}#}
-{#                    {{ form.DELETE }} DELETE#}
-{#                {% endif %}#}
-            <div>
-{#            (<a href="/quiz/manage_answers/{{ form.instance.pk }}/">manage answers</a>)#}
-
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        {% for form in formset %}
+            {{ form.id }}
             <ul>
-            {% for answer in form.instance.answers %}
-                <li>{{ answer.text }}
-                {% if answer.correct %}
-                (CORRECT)
-                {% endif %}
+                <li>
+                    {#                 Widget display is too ugly       #}
+                    {#                {% if formset.can_order %}#}
+                    {#                    {{ form.ORDER }}#}
+                    {#                {% endif %}#}
+
+                    <a href="{% url 'quiz2.apps.quiz.views.manage_question' form.instance.pk %}">
+                        {% if form.instance.text %}
+                            {{form.instance.text}}
+                        {% else %}
+                            {{form.data.text}}
+                        {% endif %}
+                    </a>
+
+                    {#                 Widget display is too ugly       #}
+                    {#                {% if formset.can_delete %}#}
+                    {#                    {{ form.DELETE }} DELETE#}
+                    {#                {% endif %}#}
+                    <div>
+                        <ul>
+                            {% for answer in form.instance.answers %}
+                                <li>
+                                <a href="{% url 'quiz2.apps.quiz.views.manage_answer' answer.pk %}">
+                                    {{ answer.text }}
+                                    {% if answer.correct %}
+                                        (CORRECT)
+                                    {% endif %}
+                                </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </li>
-            {% endfor %}
             </ul>
-            </div>
-            </li>
-        </ul>
-    {% endfor %}
-    <a href="/quiz/question_add/{{ quiz.id }}/">add a question</a>
-</form>
+        {% endfor %}
+        <a href="/quiz/question_add/{{ quiz.id }}/">add a question</a>
+    </form>
 {% endblock %}
 
 

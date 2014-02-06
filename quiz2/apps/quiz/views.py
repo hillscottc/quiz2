@@ -5,6 +5,7 @@ from quiz2.apps.quiz.forms import QuestionForm, AnswerForm
 from django.contrib.auth.decorators import login_required
 from django.forms.models import formset_factory, inlineformset_factory, modelformset_factory
 
+
 def quiz_index(request):
     """List all quizzes."""
     context = {'quiz_list': Quiz.objects.all()}
@@ -33,22 +34,10 @@ def post_answer(request, a_id):
     return HttpResponse(response)
 
 
+
+
+
 @login_required
-def question_add(request, quiz_id):
-    quiz = Quiz.objects.get(pk=quiz_id)
-    if request.method == 'POST':
-        form = QuestionForm(request.POST)
-        if form.is_valid():
-            return HttpResponse("Thanks for answering. You posted %s" % request.REQUEST)
-    else:
-        form = QuestionForm(request.user,
-                            initial={'quiz': quiz})
-
-    return render(request, 'quiz/question/add.html', {
-        'quiz': quiz, 'form': form,
-    })
-
-
 def manage_quiz(request, quiz_id):
     quiz = Quiz.objects.get(pk=quiz_id)
     QuestionFormSet = modelformset_factory(
@@ -68,6 +57,7 @@ def manage_quiz(request, quiz_id):
                   {'quiz': quiz, 'formset': formset})
 
 
+@login_required
 def manage_question(request, question_id):
     question = Question.objects.get(pk=question_id)
     answers = Answer.objects.filter(question=question)
@@ -87,23 +77,44 @@ def manage_question(request, question_id):
                    'answers': answers})
 
 
-def manage_answers(request, question_id):
-    question = Question.objects.get(pk=question_id)
-    AnswerFormSet = modelformset_factory(
-        Answer, fields=('text',), can_delete=True, can_order=True,
-        extra=0)
-
+@login_required
+def manage_answer(request, answer_id):
+    answer = Answer.objects.get(pk=answer_id)
+    question = Question.objects.get(answer=answer)
+    # quiz = Quiz.objects.get(question=question)
     if request.method == 'POST':
-        formset = AnswerFormSet(request.POST, request.FILES)
-        if formset.is_valid():
-            # do something with the formset.cleaned_data
-            pass
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            return HttpResponse("Thanks for answering. You posted %s" % request.REQUEST)
     else:
-        formset = AnswerFormSet(queryset=Answer.objects.filter(question=question))
+        form = AnswerForm(initial={'question': question,
+                                   'text': answer.text,
+                                   'correct': answer.correct,
+                                   'notes': answer.notes})
 
-    return render(request, 'quiz/question/manage_answers.html',
-                              {'question': question,
-                               'formset': formset})
+    return render(request, 'quiz/question/manage_answer.html',
+                  {'form': form,
+                   'answer_id': answer.id,
+                   'question': question})
+
+
+
+
+# @login_required
+# def question_add(request, quiz_id):
+#     quiz = Quiz.objects.get(pk=quiz_id)
+#     if request.method == 'POST':
+#         form = QuestionForm(request.POST)
+#         if form.is_valid():
+#             return HttpResponse("Thanks for answering. You posted %s" % request.REQUEST)
+#     else:
+#         form = QuestionForm(request.user,
+#                             initial={'quiz': quiz})
+#
+#     return render(request, 'quiz/question/add.html', {
+#         'quiz': quiz, 'form': form,
+#     })
+
 
 ## This works, but not used right now. Uses formset.
 # def manage_questions(request, quiz_id):
@@ -123,4 +134,21 @@ def manage_answers(request, question_id):
 #
 #     return render(request, 'quiz/question/manage_questions.html',
 #                               {'quiz': quiz, 'formset': formset})
-
+#
+# def manage_answers(request, question_id):
+#     question = Question.objects.get(pk=question_id)
+#     AnswerFormSet = modelformset_factory(
+#         Answer, fields=('text',), can_delete=True, can_order=True,
+#         extra=0)
+#
+#     if request.method == 'POST':
+#         formset = AnswerFormSet(request.POST, request.FILES)
+#         if formset.is_valid():
+#             # do something with the formset.cleaned_data
+#             pass
+#     else:
+#         formset = AnswerFormSet(queryset=Answer.objects.filter(question=question))
+#
+#     return render(request, 'quiz/question/manage_answers.html',
+#                               {'question': question,
+#                                'formset': formset})

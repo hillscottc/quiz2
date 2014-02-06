@@ -1,0 +1,23 @@
+{% extends "quiz/quiz_base.html" %}
+
+
+{% block content %}
+
+    <h2>Manage Answer</h2>
+    <h3>Quiz</h3>
+    {{ question.quiz }}
+
+    <h3>Question</h3>
+    {{ question }}
+
+    <h3>Answer</h3>
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ form.text }}
+        <div>Correct? {{ form.correct }}</div>
+        <input type="submit" value="Update Answer">
+    </form>
+{% endblock %}
+
+
+
