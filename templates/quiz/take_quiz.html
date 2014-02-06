@@ -6,7 +6,7 @@
 
     {% if q_list %}
         <div class="question_list">
-            <ul>
+            <ul class="list-group">
                 {% for question in q_list %}
                     {% include "quiz/question/snip.html" %}
                 {% endfor %}

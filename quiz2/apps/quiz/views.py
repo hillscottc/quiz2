@@ -1,11 +1,12 @@
-from django.shortcuts import HttpResponse, render, render_to_response
+from django.shortcuts import HttpResponse, render
 
 from quiz2.apps.quiz.models import Quiz, Question, Answer
 from quiz2.apps.quiz.forms import QuestionForm, AnswerForm
 
 from django.contrib.auth.decorators import login_required
-from django.forms.models import formset_factory, inlineformset_factory, modelformset_factory
+from django.forms.models import modelformset_factory
 from django.forms import HiddenInput
+
 
 def quiz_index(request):
     """List all quizzes."""
@@ -29,9 +30,9 @@ def post_answer(request, a_id):
     """Answer a question."""
     answer = Answer.objects.get(pk=a_id)
     if answer.correct:
-        response = "Correct!"
+        response = "<strong>Correct!</strong> Great job."
     else:
-        response = "Wrong answer."
+        response = "<strong>Sorry,</strong> wrong answer."
     return HttpResponse(response)
 
 

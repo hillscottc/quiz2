@@ -1,20 +1,24 @@
-<li style="padding-bottom:5px">
-    <div class="question">
-        {{ question }}
-    <span class="tag_list">
-        ({{ question.tags|join:", " }})
-    </span>
+<li class="list-group-item" >
+    <div class="question" style="padding-bottom:5px">
+        <h4 class="list-group-item-heading">{{ question }}
+            <span class="tag_list">({{ question.tags|join:", " }})</span>
+        </h4>
     </div>
     <div class="answer_list">
-        <ul>
+        <ul class="list-group">
             {% for answer in question.answers %}
-                <li><input class="radio_answer" type="radio" 
-                     name="{{ question.id }}" 
-                     value="{{ answer.id }}"> {{ answer.text }}</li>
+                <li class="list-group-item"><input class="radio_answer" type="radio"
+                                                   name="{{ question.id }}"
+                                                   value="{{ answer.id }}"> {{ answer.text }}</li>
             {% endfor %}
         </ul>
     </div>
-    <div class="result_div" id="result_{{ question.id }}" style="">
-       &nbsp; 
+
+{#      <div class="alert alert-success">#}
+{#        <strong>Well done!</strong> You successfully read this important alert message.#}
+{#      </div>#}
+
+    <div id="result_{{ question.id }}">
+        &nbsp;
     </div>
 </li>

@@ -8,9 +8,9 @@ $(document).ready(function() {
                 success:function(result){
                     $("#result_" + q_id).html(result);
                     if (result.indexOf("Correct!") != -1) {
-                        $("#result_" + q_id).css('color', 'green');
+                        $("#result_" + q_id).attr('class', 'alert alert-success');
                     } else {
-                        $("#result_" + q_id).css('color', 'red');    
+                        $("#result_" + q_id).attr('class', 'alert alert-danger')
                     }
                 },
                 error:function(xhr, textStatus, errorThrown){
