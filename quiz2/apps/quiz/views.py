@@ -12,7 +12,7 @@ def quiz_index(request):
     return render(request, 'quiz/index.html', context)
 
 
-def quiz_questions(request, quiz_id):
+def take_quiz(request, quiz_id):
     """List questions for quiz."""
     if request.method == 'POST':
         return HttpResponse("You posted %s" % request.REQUEST)
@@ -21,7 +21,7 @@ def quiz_questions(request, quiz_id):
         quiz = Quiz.objects.get(pk=quiz_id)
         context = {'quiz': quiz,
                    'q_list': Question.objects.filter(quiz=quiz)}
-        return render(request, 'quiz/question/q_list.html', context)
+        return render(request, 'quiz/take_quiz.html', context)
 
 
 def post_answer(request, a_id):
@@ -32,9 +32,6 @@ def post_answer(request, a_id):
     else:
         response = "Wrong answer."
     return HttpResponse(response)
-
-
-
 
 
 @login_required
@@ -92,7 +89,7 @@ def manage_answer(request, answer_id):
                                    'correct': answer.correct,
                                    'notes': answer.notes})
 
-    return render(request, 'quiz/question/manage_answer.html',
+    return render(request, 'quiz/answer/manage_answer.html',
                   {'form': form,
                    'answer_id': answer.id,
                    'question': question})

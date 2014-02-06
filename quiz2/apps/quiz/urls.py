@@ -10,7 +10,7 @@ urlpatterns = patterns(
     '',
     # url(r'^$', views.home, name='home'),
     url(r'^$', views.quiz_index, name='quiz_index'),
-    url(r'^quiz/(?P<quiz_id>\d+)/$', views.quiz_questions, name='quiz_questions'),
+    url(r'^quiz/(?P<quiz_id>\d+)/$', views.take_quiz, name='take_quiz'),
     url(r'^post_answer/(?P<a_id>\d+)/$', views.post_answer, name='post_answer'),
 
 

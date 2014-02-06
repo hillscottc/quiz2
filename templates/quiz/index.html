@@ -9,7 +9,7 @@
                 {% for quiz in quiz_list %}
 
                     <li>{{ quiz }}
-                        (<a href="{% url 'quiz_questions' quiz.id %}">take</a>,
+                        (<a href="{% url 'take_quiz' quiz.id %}">take</a>,
                         <a href="{% url 'quiz2.apps.quiz.views.manage_quiz' quiz.id %}">manage</a>)
                     </li>
                 {% endfor %}
