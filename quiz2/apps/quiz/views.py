@@ -59,6 +59,7 @@ def manage_quiz(request, quiz_id):
 @login_required
 def manage_question(request, question_id):
     question = Question.objects.get(pk=question_id)
+    quiz = question.quiz
     answers = Answer.objects.filter(question=question)
     if request.method == 'POST':
         form = QuestionForm(request.POST)
@@ -71,6 +72,7 @@ def manage_question(request, question_id):
 
     return render(request, 'quiz/question/manage_question.html',
                   {'form': form,
+                   'quiz': quiz,
                    'question_id': question.id,
                    'answers': answers})
 

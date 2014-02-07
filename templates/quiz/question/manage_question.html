@@ -3,14 +3,20 @@
 
 {% block content %}
 
-    <h2>Manage Question</h2>
-    <h3>Quiz</h3>
-    {{ quiz }}
-    <h3>Question</h3>
+        <div class="page-header">
+        <h1>Manage Question</h1>
+    </div>
+
+        <div class="page-header">
+        <h2>{{ quiz }}</h2>
+    </div>
+
+
     <form method="post" id="question_form" action="">
         {% csrf_token %}
         {{ form.id }}
-        {{ form.text }}
+       <label>Question text:</label>
+        <br/>{{ form.text }}
         <input type="submit" value="Update Question">
         <div>
             <ul>
@@ -30,13 +36,13 @@
     </form>
 
 
-{#        <div>#}
-{#        <a href="{% url 'quiz2.apps.quiz.views.answer_add' question_id %}"class="btn btn-primary" role="button">Add an answer</a>#}
-{#    </div>#}
-{{ quiz.id }}
-{#        <div>#}
-{#        <a href="{% url 'quiz2.apps.quiz.views.manage_quiz' quiz.id %}" class="btn btn-primary btn-lg" role="button">&laquo;Back to Quiz</a>#}
-{#    </div>#}
+    <div>
+        <a href="{% url 'quiz2.apps.quiz.views.answer_add' question_id %}"class="btn btn-primary" role="button">Add an answer</a>
+    </div>
+    <br/>
+    <div>
+        <a href="{% url 'quiz2.apps.quiz.views.manage_quiz' quiz.id %}" class="btn btn-primary btn-lg" role="button">&laquo;Back to Quiz</a>
+    </div>
 
 {% endblock %}
 
