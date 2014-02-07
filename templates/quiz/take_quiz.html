@@ -1,8 +1,16 @@
 {% extends "quiz/quiz_base.html" %}
 
-
 {% block content %}
-    <h2>{{ questionset }}</h2>
+
+    <div class="pull-right">
+        <a href="{% url 'quiz2.apps.quiz.views.manage_quiz' quiz.id %}" class="btn btn-primary btn-lg" role="button">Edit this quiz</a>
+    </div>
+
+    <div class="page-header">
+        <h1>{{ quiz.name }}</h1>
+    </div>
+
+
 
     {% if q_list %}
         <div class="question_list">

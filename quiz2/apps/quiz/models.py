@@ -26,6 +26,7 @@ class Quiz(CommonModel):
     """Groups the questions."""
     user = models.ForeignKey(User)
     name = models.CharField(max_length=100)
+    # version = models.PositiveIntegerField(default=1)
 
     class Meta:
         unique_together = ("user", "name")

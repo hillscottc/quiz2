@@ -1,5 +1,5 @@
-from django.shortcuts import HttpResponse, render
-
+from django.shortcuts import HttpResponse, render, HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from quiz2.apps.quiz.models import Quiz, Question, Answer
 from quiz2.apps.quiz.forms import QuestionForm, AnswerForm
 
@@ -103,7 +103,8 @@ def question_add(request, quiz_id):
         form = QuestionForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             form.save()
-            return HttpResponse("Saved! You posted %s" % request.REQUEST)
+            # return HttpResponseRedirect(reverse('manage_quiz',  kwargs={'quiz_id': quiz_id}))
+            return HttpResponseRedirect('/quiz/manage_quiz/%s/' % quiz_id)
     else:
         form = QuestionForm(initial={'quiz': quiz,
                                      'user': request.user})
@@ -122,7 +123,9 @@ def answer_add(request, question_id):
         form = AnswerForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             form.save()
-            return HttpResponse("Saved! You posted %s" % request.REQUEST)
+            # return HttpResponse("Saved! You posted %s" % request.REQUEST)
+            return HttpResponseRedirect('/quiz/manage_question/%s/' % question_id)
+
     else:
         form = AnswerForm(initial={'question': question})
         form.fields['question'].widget = HiddenInput()
