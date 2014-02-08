@@ -62,13 +62,19 @@ def manage_question(request, question_id):
     quiz = question.quiz
     answers = Answer.objects.filter(question=question)
     if request.method == 'POST':
-        form = QuestionForm(request.POST)
+        if 'delete' in request.POST:
+            question.delete()
+            return HttpResponseRedirect('/quiz/manage_quiz/%s/' % quiz.id)
+        form = QuestionForm(request.POST, instance=question)
         if form.is_valid():
-            return HttpResponse("Thanks for answering. You posted %s" % request.REQUEST)
+            form.save()
+            # return HttpResponse("Thanks for answering. You posted %s" % request.REQUEST)
+            return HttpResponseRedirect('/quiz/manage_quiz/%s/' % quiz.id)
     else:
         form = QuestionForm(initial={'quiz': question.quiz,
                                      'text': question.text,
                                      'answers': Answer.objects.filter(question=question)})
+        form.fields['quiz'].widget = HiddenInput()
 
     return render(request, 'quiz/question/manage_question.html',
                   {'form': form,
@@ -83,14 +89,22 @@ def manage_answer(request, answer_id):
     question = Question.objects.get(answer=answer)
     # quiz = Quiz.objects.get(question=question)
     if request.method == 'POST':
-        form = AnswerForm(request.POST)
+        if 'delete' in request.POST:
+            answer.delete()
+            return HttpResponseRedirect('/quiz/manage_question/%s/' % question.id)
+        # form = AnswerForm(request.POST)
+        form = AnswerForm(request.POST, instance=answer)
         if form.is_valid():
-            return HttpResponse("Thanks for answering. You posted %s" % request.REQUEST)
+            # return HttpResponse("Thanks for answering. You posted %s" % request.REQUEST)
+            # form = AnswerForm(request.POST, instance=answer)
+            form.save()
+            return HttpResponseRedirect('/quiz/manage_question/%s/' % question.id)
     else:
         form = AnswerForm(initial={'question': question,
                                    'text': answer.text,
                                    'correct': answer.correct,
                                    'notes': answer.notes})
+        form.fields['question'].widget = HiddenInput()
 
     return render(request, 'quiz/answer/manage_answer.html',
                   {'form': form,

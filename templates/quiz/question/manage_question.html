@@ -3,45 +3,60 @@
 
 {% block content %}
 
-        <div class="page-header">
+    <div class="page-header">
         <h1>Manage Question</h1>
     </div>
 
-        <div class="page-header">
+    <div>
         <h2>{{ quiz }}</h2>
     </div>
 
 
-    <form method="post" id="question_form" action="">
+    <form method="post" id="question_form" action="{% url 'quiz2.apps.quiz.views.manage_question' question_id  %}">
         {% csrf_token %}
         {{ form.id }}
-       <label>Question text:</label>
-        <br/>{{ form.text }}
-        <input type="submit" value="Update Question">
-        <div>
-            <ul>
-                {% for answer in answers %}
-                    <li>
-                        <a href="{% url 'quiz2.apps.quiz.views.manage_answer' answer.pk %}">
-                            {{ answer.text }}
-                            {% if answer.correct %}
-                                (CORRECT)
-                            {% endif %}
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
 
+        {{ form.non_field_errors }}
+
+        {% for field in form.visible_fields %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+        </div>
+        {% endfor %}
+
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+        <p>
+            <button type="submit" name="delete" class="btn btn-danger">Delete question</button>
+            <button type="submit" name="update" class="btn btn-success">Update question</button>
+        </p>
     </form>
+    <div>
+        <ul>
+            {% for answer in answers %}
+                <li>
+                    <a href="{% url 'quiz2.apps.quiz.views.manage_answer' answer.pk %}">
+                        {{ answer.text }}
+                        {% if answer.correct %}
+                            (CORRECT)
+                        {% endif %}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
 
 
     <div>
-        <a href="{% url 'quiz2.apps.quiz.views.answer_add' question_id %}"class="btn btn-primary" role="button">Add an answer</a>
+        <a href="{% url 'quiz2.apps.quiz.views.answer_add' question_id %}"class="btn btn-info" role="button">Add an answer</a>
     </div>
     <br/>
     <div>
-        <a href="{% url 'quiz2.apps.quiz.views.manage_quiz' quiz.id %}" class="btn btn-primary btn-lg" role="button">&laquo;Back to Quiz</a>
+        <a href="{% url 'quiz2.apps.quiz.views.manage_quiz' quiz.id %}" class="btn btn-primary btn-lg" role="button">&laquo; Back to quiz</a>
     </div>
 
 {% endblock %}

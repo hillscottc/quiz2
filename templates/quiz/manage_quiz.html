@@ -7,15 +7,15 @@
         <h1>Edit Quiz</h1>
     </div>
 
+
+
+    <div>
+        <h3>{{ quiz }}</h3>
+    </div>
+
       <div class="well">
         <p>Click a question or answer to edit.</p>
       </div>
-
-
-    <div class="page-header">
-        <h2>{{ quiz }}</h2>
-    </div>
-
 
     <form method="post" action="">
         {% csrf_token %}
@@ -24,10 +24,8 @@
             {{ form.id }}
             <ul>
                 <li>
-                    {#                 Widget display is too ugly       #}
-                    {#                {% if formset.can_order %}#}
-                    {#                    {{ form.ORDER }}#}
-                    {#                {% endif %}#}
+                    {# Widget display is too ugly #}
+                    {# {% if formset.can_order %}{{ form.ORDER }}{% endif %}#}
 
                     <a href="{% url 'quiz2.apps.quiz.views.manage_question' form.instance.pk %}">
                         {% if form.instance.text %}
@@ -37,10 +35,8 @@
                         {% endif %}
                     </a>
 
-                    {#                 Widget display is too ugly       #}
-                    {#                {% if formset.can_delete %}#}
-                    {#                    {{ form.DELETE }} DELETE#}
-                    {#                {% endif %}#}
+                    {# Widget display is too ugly #}
+                    {# {% if formset.can_delete %}{{ form.DELETE }}{% endif %} #}
                     <div>
                         <ul>
                             {% for answer in form.instance.answers %}
@@ -61,7 +57,11 @@
     </form>
 
      <div>
-        <a href="{% url 'quiz2.apps.quiz.views.question_add' quiz.id %}" class="btn btn-primary" role="button">Add a question</a>
+        <a href="{% url 'quiz2.apps.quiz.views.question_add' quiz.id %}" class="btn btn-info" role="button">Add a question</a>
+    </div>
+    <br/>
+    <div>
+        <a href="{% url 'quiz2.apps.quiz.views.quiz_index' %}" class="btn btn-primary btn-lg" role="button">&laquo; Back to quizzes</a>
     </div>
 
 {% endblock %}

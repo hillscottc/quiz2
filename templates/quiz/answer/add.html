@@ -3,34 +3,38 @@
 
 {% block content %}
 
-    <h2>Add Answer </h2>
-    <h3>Quiz</h3>
-    {{ quiz }}
+
+    <div class="page-header">
+        <h1>Add Answer</h1>
+    </div>
+
+    <div>
+        <h2>{{ question.quiz }}</h2>
+    </div>
+
     <h3>New Question</h3>
     <form action="{% url 'quiz2.apps.quiz.views.answer_add' question.id %}" method="post">
         {% csrf_token %}
         {{ form.non_field_errors }}
 
-        {#        {% for field in form %}#}
-        {#            <div class="fieldWrapper">#}
-        {#                {{ field.errors }}#}
-        {#                {{ field.label_tag }} {{ field }}#}
-        {#            </div>#}
-        {#        {% endfor %}#}
-
         {% for hidden in form.hidden_fields %}
             {{ hidden }}
         {% endfor %}
 
-     {% for field in form.visible_fields %}
-        <div class="fieldWrapper">
-            {{ field.errors }}
-            {{ field.label_tag }} {{ field }}
-        </div>
-    {% endfor %}
+        {% for field in form.visible_fields %}
+            <div class="fieldWrapper">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+            </div>
+        {% endfor %}
 
+        <p>
+            <a href="{% url 'quiz2.apps.quiz.views.manage_question' question.id %}">
+                <button type="button" name="cancel" class="btn btn-danger">Cancel</button>
+            </a>
+            <button type="submit" name="update" class="btn btn-success">Add this question</button>
+        </p>
 
-        <p><input type="submit" value="Add Answer" /></p>
 
     </form>
 

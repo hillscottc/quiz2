@@ -3,20 +3,54 @@
 
 {% block content %}
 
-    <h2>Manage Answer</h2>
-    <h3>Quiz</h3>
-    {{ question.quiz }}
+    <div class="page-header">
+        <h1>Edit Answer</h1>
+    </div>
 
-    <h3>Question</h3>
-    {{ question }}
+    <div>
+        <h2>{{ question.quiz }}</h2>
+    </div>
 
-    <h3>Answer</h3>
+
+    <div>
+        <h3>{{ question }}</h3>
+    </div>
+
+
     <form method="post" action="">
         {% csrf_token %}
-        {{ form.text }}
-        <div>Correct? {{ form.correct }}</div>
-        <input type="submit" value="Update Answer">
+        {{ form.id }}
+        {{ form.non_field_errors }}
+        <div class="fieldWrapper">
+            {{ form.text.errors }}
+            <label for="id_text">Answer:</label>
+            {{ form.text }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.notes.errors }}
+            <label for="id_notes">Notes:</label>
+            {{ form.notes }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.correct.errors }}
+            <label for="id_correct">Correct:</label>
+            {{ form.correct }}
+        </div>
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+        <p>
+            <button type="submit" name="delete" class="btn btn-danger">Delete Answer</button>
+            <button type="submit" name="update" class="btn btn-success">Update Answer</button>
+        </p>
     </form>
+
+    <br/>
+    <div>
+        <a href="{% url 'quiz2.apps.quiz.views.manage_question' question.pk %}"
+           class="btn btn-primary btn-lg" role="button">&laquo; Back to question</a>
+    </div>
+
 {% endblock %}
 
 
