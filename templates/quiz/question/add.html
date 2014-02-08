@@ -17,13 +17,6 @@
         {% csrf_token %}
         {{ form.non_field_errors }}
 
-        {#        {% for field in form %}#}
-        {#            <div class="fieldWrapper">#}
-        {#                {{ field.errors }}#}
-        {#                {{ field.label_tag }} {{ field }}#}
-        {#            </div>#}
-        {#        {% endfor %}#}
-
         {% for hidden in form.hidden_fields %}
             {{ hidden }}
         {% endfor %}
@@ -34,8 +27,13 @@
             {{ form.text }}
         </div>
 
+            <p>
+            <a href="{% url 'quiz2.apps.quiz.views.manage_quiz' quiz.id %}">
+                <button type="button" name="cancel" class="btn btn-danger">Cancel</button>
+            </a>
+            <button type="submit" name="update" class="btn btn-success">Add this question</button>
+        </p>
 
-        <p><input type="submit" value="Add Question" /></p>
 
     </form>
 

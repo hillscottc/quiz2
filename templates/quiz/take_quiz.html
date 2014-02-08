@@ -24,6 +24,10 @@
         <p>No questions are available.</p>
     {% endif %}
 
+    <div>
+        <a href="{% url 'quiz2.apps.quiz.views.quiz_index' %}" class="btn btn-primary btn-lg" role="button">&laquo; Back to quizzes</a>
+    </div>
+
 
     {% load static %}
     <script src="{% static "js/questions.js" %}"></script>
