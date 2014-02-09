@@ -35,9 +35,22 @@ class Quiz(CommonModel):
         return self.name
 
 
+class QuizLog(CommonModel):
+    """Log with foreign keys"""
+    quiz = models.ForeignKey(Quiz)
+    taker = models.ForeignKey(User, null=True)
+    MESSAGE_CHOICES = (('STARTED', 'STARTED'), ('COMPLETED', 'COMPLETED'))
+    message = models.CharField(max_length=10, choices=MESSAGE_CHOICES)
+
+
+class RawLog(CommonModel):
+    """Log without foreign keys"""
+    message = models.CharField(max_length=100)
+
+
 class Question(CommonModel):
     quiz = models.ForeignKey(Quiz)
-    text = models.CharField(max_length=255, unique=True)
+    text = models.CharField(max_length=255)
 
     class Meta:
         unique_together = ("text", "quiz")
@@ -57,7 +70,7 @@ class Question(CommonModel):
 
 class Answer(CommonModel):
     question = models.ForeignKey(Question)
-    text = models.CharField(max_length=50, unique=True)
+    text = models.CharField(max_length=50)
     correct = models.BooleanField(default=False)
     notes = models.CharField(max_length=100, blank=True)
 

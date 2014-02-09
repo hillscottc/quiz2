@@ -1,89 +1,87 @@
 """Model data for loading."""
-from quiz2.apps.quiz.models import (Question, Answer, QuestionAnswer, Tag,
-                                    QuestionTag, QuestionSet)
+from quiz2.apps.quiz.models import (Question, Answer, Tag, QuestionTag, Quiz)
 from django.contrib.auth.models import User
-
-u = User.objects.get(pk=1)
-qs1 = QuestionSet.objects.create(user=u, name="Question Set 1")
-qs2 = QuestionSet.objects.create(user=u, name="Question Set 2")
-
-## Numeric answers
-for i in range(0, 10):
-    Answer.objects.create(text=str(i))
+from random import randint
 
 
-Tag.objects.create(text="Science")
-Tag.objects.create(text="History")
-Tag.objects.create(text="UnitedStates")
-Tag.objects.create(text="Math")
-Tag.objects.create(text="Geography")
+def do_load():
 
-q = Question.objects.create(text="How many planets are in our solar system?", questionset=qs1)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.get(text="7"))
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.get(text="8"), correct=True)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.get(text="9"))
-QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="Science"))
+    u, _ = User.objects.get_or_create(pk=1)
+    quiz1 = Quiz.objects.create(user=u, name="Demo Quiz %s" % randint(1, 1000))
+    print "Created quiz", quiz1
 
-q = Question.objects.create(text="What is the fourth planet from the sun?", questionset=qs1)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="Neptune"))
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="Earth"))
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="Mars"), correct=True)
-QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="Science"))
+    Tag.objects.get_or_create(text="Science")
+    Tag.objects.get_or_create(text="History")
+    Tag.objects.get_or_create(text="UnitedStates")
+    Tag.objects.get_or_create(text="Math")
+    Tag.objects.get_or_create(text="Geography")
 
-q = Question.objects.create(text="How many sides on a triangle?", questionset=qs1)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.get(text="3"), correct=True)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.get(text="4"))
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.get(text="5"))
-QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="Math"))
+    q = Question.objects.create(text="What is the name of the first US president?", quiz=quiz1)
+    Answer.objects.create(question=q, text="Washington", correct=True)
+    Answer.objects.create(question=q, text="Lincoln")
+    Answer.objects.create(question=q, text="Kennedy")
+    QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="History"))
+    QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="UnitedStates"))
 
-q = Question.objects.create(text="What is the name of the first US president?", questionset=qs1)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="Washington"), correct=True)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="Lincoln"))
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="Kennedy"))
-QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="History"))
-QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="UnitedStates"))
+    q = Question.objects.create(text="How many planets are in our solar system?", quiz=quiz1)
+    Answer.objects.create(question=q, text="7")
+    Answer.objects.create(question=q, text="8", correct=True)
+    Answer.objects.create(question=q, text="9")
+    QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="Science"))
+    
+    q = Question.objects.create(text="What is the fourth planet from the sun?", quiz=quiz1)
+    Answer.objects.create(question=q, text="Neptune")
+    Answer.objects.create(question=q, text="Earth")
+    Answer.objects.create(question=q, text="Mars", correct=True)
+    QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="Science"))
+    
+    q = Question.objects.create(text="How many sides on a triangle?", quiz=quiz1)
+    Answer.objects.create(question=q, text="3", correct=True)
+    Answer.objects.create(question=q, text="4")
+    Answer.objects.create(question=q, text="5")
+    QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="Math"))
 
-q = Question.objects.create(text="What is the name of the official national anthem of the USA?", questionset=qs1)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="The Star-Spangled Banner"), correct=True)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="America the Beautiful"))
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="Stars and Stripes Forever"))
-QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="UnitedStates"))
-
-q = Question.objects.create(text="What is the capital city of Afghanistan?", questionset=qs1)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="Kabul"), correct=True)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="Falujah"))
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="Darfur"))
-QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="Geography"))
-
-q = Question.objects.create(text="Which two colours are on the flag of Poland?", questionset=qs2)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="Red and White"), correct=True)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="Red and Blue"))
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="Red and Green"))
-QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="Geography"))
-
-q = Question.objects.create(text="How many US states begin with the letter 'P'", questionset=qs2)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.get(text="1"), correct=True)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.get(text="2"))
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.get(text="3"))
-QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="UnitedStates"))
-QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="Geography"))
-
-q = Question.objects.create(text="Paraguay has borders with Brazil, Bolivia and which other country?", questionset=qs2)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="Argentina"), correct=True)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="Venezuela"))
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="Belize"))
-QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="Geography"))
-
-q = Question.objects.create(text="In which country is Mount Everest?", questionset=qs2)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="Nepal"), correct=True)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="China"))
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="India"))
-QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="Geography"))
-
-q = Question.objects.create(text="What is the national currency of Egypt?", questionset=qs2)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="The Pound"), correct=True)
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="The Lira"))
-QuestionAnswer.objects.create(question=q, answer=Answer.objects.create(text="The Dollar"))
-QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="Geography"))
+    q = Question.objects.create(text="What is the name of the official national anthem of the USA?", quiz=quiz1)
+    Answer.objects.create(question=q, text="The Star-Spangled Banner", correct=True)
+    Answer.objects.create(question=q, text="America the Beautiful")
+    Answer.objects.create(question=q, text="Stars and Stripes Forever")
+    QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="UnitedStates"))
+    
+    q = Question.objects.create(text="What is the capital city of Afghanistan?", quiz=quiz1)
+    Answer.objects.create(question=q, text="Kabul", correct=True)
+    Answer.objects.create(question=q, text="Falujah")
+    Answer.objects.create(question=q, text="Darfur")
+    QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="Geography"))
+    
+    q = Question.objects.create(text="Which two colours are on the flag of Poland?", quiz=quiz1)
+    Answer.objects.create(question=q, text="Red and White", correct=True)
+    Answer.objects.create(question=q, text="Red and Blue")
+    Answer.objects.create(question=q, text="Red and Green")
+    QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="Geography"))
+    
+    q = Question.objects.create(text="How many US states begin with the letter 'P'", quiz=quiz1)
+    Answer.objects.create(question=q, text="1", correct=True)
+    Answer.objects.create(question=q, text="2")
+    Answer.objects.create(question=q, text="3")
+    QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="UnitedStates"))
+    QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="Geography"))
+    
+    q = Question.objects.create(text="Paraguay has borders with Brazil, Bolivia and which other country?", quiz=quiz1)
+    Answer.objects.create(question=q, text="Argentina", correct=True)
+    Answer.objects.create(question=q, text="Venezuela")
+    Answer.objects.create(question=q, text="Belize")
+    QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="Geography"))
+    
+    q = Question.objects.create(text="In which country is Mount Everest?", quiz=quiz1)
+    Answer.objects.create(question=q, text="Nepal", correct=True)
+    Answer.objects.create(question=q, text="China")
+    Answer.objects.create(question=q, text="India")
+    QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="Geography"))
+    
+    q = Question.objects.create(text="What is the national currency of Egypt?", quiz=quiz1)
+    Answer.objects.create(question=q, text="The Pound", correct=True)
+    Answer.objects.create(question=q, text="The Lira")
+    Answer.objects.create(question=q, text="The Dollar")
+    QuestionTag.objects.create(question=q, tag=Tag.objects.get(text="Geography"))
 
 

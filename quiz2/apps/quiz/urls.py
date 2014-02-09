@@ -8,26 +8,29 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    # url(r'^$', views.home, name='home'),
-    url(r'^$', views.quiz_index, name='quiz_index'),
-    url(r'^quiz/(?P<quiz_id>\d+)/$', views.take_quiz, name='take_quiz'),
-    url(r'^post_answer/(?P<a_id>\d+)/$', views.post_answer, name='post_answer'),
-
-
-    url(r'manage_quiz/(?P<quiz_id>\d+)/$', views.manage_quiz),
-    url(r'manage_question/(?P<question_id>\d+)/$', views.manage_question),
+    url(r'^$', views.home, name='quizapp_home'),
+    url(r'^quiz/index/$', views.quiz_index, name='quiz_index'),
+    url(r'^quiz/take/(?P<quiz_id>\d+)/$', views.quiz_take, name='quiz_take'),
+    url(r'quiz/manage/(?P<quiz_id>\d+)/$', views.quiz_manage, name='quiz_manage'),
+    url(r'quiz/delete/(?P<quiz_id>\d+)/$', views.quiz_delete, name="quiz_delete"),
 
 
 
-    url(r'manage_answer/(?P<answer_id>\d+)/$', views.manage_answer),
-    # url(r'manage_answers/(?P<question_id>\d+)/$', views.manage_answers),
+
+    url(r'answer/post/(?P<a_id>\d+)/$', views.answer_post, name='answer_post'),
+    url(r'answer/manage/(?P<answer_id>\d+)/$', views.answer_manage, name='answer_manage'),
+    url(r'answer/add/(?P<question_id>\d+)/$', views.answer_add, name='answer_add'),
 
 
-    url(r'question_add/(?P<quiz_id>\d+)/$', views.question_add),
-    url(r'answer_add/(?P<question_id>\d+)/$', views.answer_add),
+    url(r'question/manage/(?P<question_id>\d+)/$', views.question_manage, name='question_manage'),
+    url(r'question/add/(?P<quiz_id>\d+)/$', views.question_add, name='question_add'),
 
-    ## Works, but unused for now
-    # url(r'manage_questions/(?P<quiz_id>\d+)/$', views.manage_questions),
+
+
 
     url(r'admin/', include(quiz_admin_site.urls)),
 )
+
+
+## Works, but unused for now
+# url(r'manage_questions/(?P<quiz_id>\d+)/$', views.manage_questions),

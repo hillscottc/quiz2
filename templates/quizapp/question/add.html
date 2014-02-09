@@ -1,4 +1,4 @@
-{% extends "quiz/quiz_base.html" %}
+{% extends "quizapp/quiz_base.html" %}
 
 
 {% block content %}
@@ -13,7 +13,7 @@
 
 
 
-    <form action="{% url 'quiz2.apps.quiz.views.question_add' quiz.id %}" method="post">
+    <form action="{% url 'quizapp:question_add' quiz.id %}" method="post">
         {% csrf_token %}
         {{ form.non_field_errors }}
 
@@ -28,7 +28,7 @@
         </div>
 
             <p>
-            <a href="{% url 'quiz2.apps.quiz.views.manage_quiz' quiz.id %}">
+            <a href="{% url 'quizapp:quiz_manage' quiz.id %}">
                 <button type="button" name="cancel" class="btn btn-danger">Cancel</button>
             </a>
             <button type="submit" name="update" class="btn btn-success">Add this question</button>

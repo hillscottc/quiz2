@@ -3,7 +3,7 @@ $(document).ready(function() {
     $(".radio_answer").click(function(){
         q_id = this.name;
         a_id = this.value
-        post_url = "/quiz/post_answer/" + a_id + "/"; 
+        post_url = "/quiz/answer/post/" + a_id + "/";
 		$.ajax({url:post_url, 
                 success:function(result){
                     $("#result_" + q_id).html(result);

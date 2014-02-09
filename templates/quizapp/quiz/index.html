@@ -1,0 +1,25 @@
+{% extends "quizapp/quiz_base.html" %}
+
+{% block content %}
+
+      <div class="page-header">
+        <h1>Quizzes</h1>
+      </div>
+
+    {% if quiz_list %}
+        <div class="quiz_list">
+            <ul class="list-group">
+                {% for quiz in quiz_list %}
+                    <li class="list-group-item">
+                        <a href="{% url 'quizapp:quiz_take' quiz.id %}">{{ quiz }}</a>
+{#                        (<a href="{% url 'take_quiz' quiz.id %}">take</a>,#}
+{#                        <a href="{% url 'quiz2.apps.quiz.views.manage_quiz' quiz.id %}">manage</a>)#}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <p>No question sets are available.</p>
+    {% endif %}
+
+{% endblock %}

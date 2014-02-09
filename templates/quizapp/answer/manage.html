@@ -1,4 +1,4 @@
-{% extends "quiz/quiz_base.html" %}
+{% extends "quizapp/quiz_base.html" %}
 
 
 {% block content %}
@@ -47,7 +47,7 @@
 
     <br/>
     <div>
-        <a href="{% url 'quiz2.apps.quiz.views.manage_question' question.pk %}"
+        <a href="{% url 'quiz2.apps.quiz.views.question_manage' question.pk %}"
            class="btn btn-primary btn-lg" role="button">&laquo; Back to question</a>
     </div>
 

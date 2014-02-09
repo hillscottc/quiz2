@@ -2,42 +2,38 @@ from django.shortcuts import HttpResponse, render, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from quiz2.apps.quiz.models import Quiz, Question, Answer
 from quiz2.apps.quiz.forms import QuestionForm, AnswerForm
+from quiz2.apps.quiz.quiz_mgr import log_message
 
 from django.contrib.auth.decorators import login_required
 from django.forms.models import modelformset_factory
 from django.forms import HiddenInput
 
 
+def home(request):
+    return render(request, 'quizapp/home.html', {})
+
+
 def quiz_index(request):
     """List all quizzes."""
     context = {'quiz_list': Quiz.objects.all()}
-    return render(request, 'quiz/index.html', context)
+    return render(request, 'quizapp/quiz/index.html', context)
 
 
-def take_quiz(request, quiz_id):
+def quiz_take(request, quiz_id):
     """List questions for quiz."""
     if request.method == 'POST':
         return HttpResponse("You posted %s" % request.REQUEST)
         #request.POST.get("title", "")
     else:
+        log_message(message="someone started a quiz")
         quiz = Quiz.objects.get(pk=quiz_id)
         context = {'quiz': quiz,
                    'q_list': Question.objects.filter(quiz=quiz)}
-        return render(request, 'quiz/take_quiz.html', context)
-
-
-def post_answer(request, a_id):
-    """Answer a question."""
-    answer = Answer.objects.get(pk=a_id)
-    if answer.correct:
-        response = "<strong>Correct!</strong> Great job."
-    else:
-        response = "<strong>Sorry,</strong> wrong answer."
-    return HttpResponse(response)
+        return render(request, 'quizapp/quiz/take.html', context)
 
 
 @login_required
-def manage_quiz(request, quiz_id):
+def quiz_manage(request, quiz_id):
     quiz = Quiz.objects.get(pk=quiz_id)
     QuestionFormSet = modelformset_factory(
         Question, fields=('text',),
@@ -52,53 +48,75 @@ def manage_quiz(request, quiz_id):
         formset = QuestionFormSet(
             queryset=Question.objects.filter(quiz=quiz))
 
-    return render(request, 'quiz/manage_quiz.html',
+    return render(request, 'quizapp/quiz/manage.html',
                   {'quiz': quiz, 'formset': formset})
 
 
 @login_required
-def manage_question(request, question_id):
+def quiz_delete(request, quiz_id):
+    quiz = Quiz.objects.get(pk=quiz_id)
+    quiz.delete()
+    return HttpResponseRedirect(reverse('quiz_index'))
+
+
+@login_required
+def question_manage(request, question_id):
     question = Question.objects.get(pk=question_id)
     quiz = question.quiz
     answers = Answer.objects.filter(question=question)
     if request.method == 'POST':
         if 'delete' in request.POST:
             question.delete()
-            return HttpResponseRedirect('/quiz/manage_quiz/%s/' % quiz.id)
+            # return HttpResponseRedirect('/quiz/manage_quiz/%s/' % quiz.id)
+            return HttpResponseRedirect(reverse('quiz_manage', args=(quiz.id,)))
         form = QuestionForm(request.POST, instance=question)
         if form.is_valid():
             form.save()
             # return HttpResponse("Thanks for answering. You posted %s" % request.REQUEST)
-            return HttpResponseRedirect('/quiz/manage_quiz/%s/' % quiz.id)
+            # return HttpResponseRedirect('/quiz/manage_quiz/%s/' % quiz.id)
+            return HttpResponseRedirect(reverse('quiz_manage', args=(quiz.id,)))
     else:
         form = QuestionForm(initial={'quiz': question.quiz,
                                      'text': question.text,
                                      'answers': Answer.objects.filter(question=question)})
         form.fields['quiz'].widget = HiddenInput()
 
-    return render(request, 'quiz/question/manage_question.html',
+    return render(request, 'quizapp/question/manage.html',
                   {'form': form,
                    'quiz': quiz,
                    'question_id': question.id,
                    'answers': answers})
 
 
+def answer_post(request, a_id):
+    """Answer a question."""
+    answer = Answer.objects.get(pk=a_id)
+    if answer.correct:
+        response = "<strong>Correct!</strong> Great job."
+    else:
+        response = "<strong>Sorry,</strong> wrong answer."
+    return HttpResponse(response)
+
+
 @login_required
-def manage_answer(request, answer_id):
+def answer_manage(request, answer_id):
     answer = Answer.objects.get(pk=answer_id)
     question = Question.objects.get(answer=answer)
     # quiz = Quiz.objects.get(question=question)
     if request.method == 'POST':
         if 'delete' in request.POST:
             answer.delete()
-            return HttpResponseRedirect('/quiz/manage_question/%s/' % question.id)
+            # return HttpResponseRedirect('/quiz/manage_question/%s/' % question.id)
+            return HttpResponseRedirect(reverse('question_manage', args=(question.id,)))
         # form = AnswerForm(request.POST)
         form = AnswerForm(request.POST, instance=answer)
         if form.is_valid():
             # return HttpResponse("Thanks for answering. You posted %s" % request.REQUEST)
             # form = AnswerForm(request.POST, instance=answer)
             form.save()
-            return HttpResponseRedirect('/quiz/manage_question/%s/' % question.id)
+            # return HttpResponseRedirect('/quiz/manage_question/%s/' % question.id)
+            return HttpResponseRedirect(reverse('question_manage', args=(question.id,)))
+
     else:
         form = AnswerForm(initial={'question': question,
                                    'text': answer.text,
@@ -106,7 +124,7 @@ def manage_answer(request, answer_id):
                                    'notes': answer.notes})
         form.fields['question'].widget = HiddenInput()
 
-    return render(request, 'quiz/answer/manage_answer.html',
+    return render(request, 'quizapp/answer/manage.html',
                   {'form': form,
                    'answer_id': answer.id,
                    'question': question})
@@ -120,15 +138,14 @@ def question_add(request, quiz_id):
         if form.is_valid():
             form.save()
             # return HttpResponseRedirect(reverse('manage_quiz',  kwargs={'quiz_id': quiz_id}))
-            return HttpResponseRedirect('/quiz/manage_quiz/%s/' % quiz_id)
+            return HttpResponseRedirect(reverse('quiz_manage', args=(quiz_id,)))
     else:
         form = QuestionForm(initial={'quiz': quiz,
                                      'user': request.user})
         form.fields['quiz'].widget = HiddenInput()
 
-    return render(request, 'quiz/question/add.html',
+    return render(request, 'quizapp/question/add.html',
                   {'quiz': quiz, 'form': form})
-
 
 
 @login_required
@@ -140,13 +157,14 @@ def answer_add(request, question_id):
         if form.is_valid():
             form.save()
             # return HttpResponse("Saved! You posted %s" % request.REQUEST)
-            return HttpResponseRedirect('/quiz/manage_question/%s/' % question_id)
+            # return HttpResponseRedirect('/quiz/manage_question/%s/' % question_id)
+            return HttpResponseRedirect(reverse('question_manage', args=(question_id,)))
 
     else:
         form = AnswerForm(initial={'question': question})
         form.fields['question'].widget = HiddenInput()
 
-    return render(request, 'quiz/answer/add.html',
+    return render(request, 'quizapp/answer/add.html',
                   {'question': question,
                    'form': form})
 

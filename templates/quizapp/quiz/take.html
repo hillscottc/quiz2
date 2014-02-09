@@ -1,0 +1,37 @@
+{% extends "quizapp/quiz_base.html" %}
+
+{% block content %}
+
+    <div class="pull-right">
+        <a href="{% url 'quizapp:quiz_manage' quiz.id %}" class="btn btn-info btn-lg" role="button">Edit this quiz</a>
+        <a href="{% url 'quizapp:quiz_index' %}" class="btn btn-primary btn-lg" role="button">&laquo; Back to quizzes</a>
+    </div>
+
+    <div class="page-header">
+        <h1>{{ quiz.name }}</h1>
+    </div>
+
+
+
+    {% if q_list %}
+        <div class="question_list">
+            <ol class="list-group">
+                {% for question in q_list %}
+                    {% include "quizapp/question/snip.html" %}
+                {% endfor %}
+            </ol>
+        </div>
+    {% else %}
+        <p>No questions are available.</p>
+    {% endif %}
+
+    <div>
+        <a href="{% url 'quizapp:quiz_manage' quiz.id %}" class="btn btn-info btn-lg" role="button">Edit this quiz</a>
+        <a href="{% url 'quizapp:quiz_index' %}" class="btn btn-primary btn-lg" role="button">&laquo; Back to quizzes</a>
+    </div>
+
+
+    {% load static %}
+    <script src="{% static "js/questions.js" %}"></script>
+
+{% endblock %}

@@ -1,4 +1,4 @@
-{% extends "quiz/quiz_base.html" %}
+{% extends "quizapp/quiz_base.html" %}
 
 
 {% block content %}
@@ -12,7 +12,8 @@
     </div>
 
 
-    <form method="post" id="question_form" action="{% url 'quiz2.apps.quiz.views.manage_question' question_id  %}">
+    <form method="post" id="question_form"
+          action="{% url 'quizapp:question_manage' question_id  %}">
         {% csrf_token %}
         {{ form.id }}
 
@@ -37,7 +38,7 @@
         <ul>
             {% for answer in answers %}
                 <li>
-                    <a href="{% url 'quiz2.apps.quiz.views.manage_answer' answer.pk %}">
+                    <a href="{% url 'quizapp:answer_manage' answer.pk %}">
                         {{ answer.text }}
                         {% if answer.correct %}
                             (CORRECT)
@@ -52,11 +53,11 @@
 
 
     <div>
-        <a href="{% url 'quiz2.apps.quiz.views.answer_add' question_id %}"class="btn btn-info" role="button">Add an answer</a>
+        <a href="{% url 'quizapp:answer_add' question_id %}"class="btn btn-info" role="button">Add an answer</a>
     </div>
     <br/>
     <div>
-        <a href="{% url 'quiz2.apps.quiz.views.manage_quiz' quiz.id %}" class="btn btn-primary btn-lg" role="button">&laquo; Back to quiz</a>
+        <a href="{% url 'quizapp:quiz_manage' quiz.id %}" class="btn btn-primary btn-lg" role="button">&laquo; Back to quiz</a>
     </div>
 
 {% endblock %}

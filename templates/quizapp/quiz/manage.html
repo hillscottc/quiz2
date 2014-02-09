@@ -1,10 +1,12 @@
-{% extends "quiz/quiz_base.html" %}
+{% extends "quizapp/quiz_base.html" %}
 
 
 {% block content %}
 
-        <div class="pull-right">
-        <a href="{% url 'take_quiz' quiz.id %}" class="btn btn-primary btn-lg" role="button">Take this quiz</a>
+
+    <div class="pull-right">
+        <a href="{% url 'quizapp:quiz_take' quiz.id %}" class="btn btn-info btn-lg" role="button">Take this quiz</a>
+        <a href="{% url 'quizapp:quiz_index' %}" class="btn btn-primary btn-lg" role="button">&laquo; Back to quizzes</a>
     </div>
 
     <div class="page-header">
@@ -21,6 +23,12 @@
         <p>Click a question or answer to edit.</p>
       </div>
 
+    <div>
+        <a href="{% url 'quizapp:question_add' quiz.id %}" class="btn btn-info" role="button">Add a question</a>
+        <a href="{% url 'quizapp:quiz_delete' quiz.id %}" class="btn btn-danger" role="button">Delete this quiz</a>
+    </div>
+    <br/>
+
     <form method="post" action="">
         {% csrf_token %}
         {{ formset.management_form }}
@@ -31,7 +39,7 @@
                     {# Widget display is too ugly #}
                     {# {% if formset.can_order %}{{ form.ORDER }}{% endif %}#}
 
-                    <a href="{% url 'quiz2.apps.quiz.views.manage_question' form.instance.pk %}">
+                    <a href="{% url 'quizapp:question_manage' form.instance.pk %}">
                         {% if form.instance.text %}
                             {{form.instance.text}}
                         {% else %}
@@ -45,7 +53,7 @@
                         <ul>
                             {% for answer in form.instance.answers %}
                                 <li>
-                                    <a href="{% url 'quiz2.apps.quiz.views.manage_answer' answer.pk %}">
+                                    <a href="{% url 'quizapp:answer_manage' answer.pk %}">
                                         {{ answer.text }}
                                         {% if answer.correct %}
                                             (CORRECT)
@@ -61,11 +69,14 @@
     </form>
 
      <div>
-        <a href="{% url 'quiz2.apps.quiz.views.question_add' quiz.id %}" class="btn btn-info" role="button">Add a question</a>
+        <a href="{% url 'quizapp:question_add' quiz.id %}" class="btn btn-info" role="button">Add a question</a>
+        <a href="{% url 'quizapp:quiz_delete' quiz.id %}" class="btn btn-danger" role="button">Delete this quiz</a>
     </div>
+
     <br/>
     <div>
-        <a href="{% url 'quiz2.apps.quiz.views.quiz_index' %}" class="btn btn-primary btn-lg" role="button">&laquo; Back to quizzes</a>
+        <a href="{% url 'quizapp:quiz_take' quiz.id %}" class="btn btn-info btn-lg" role="button">Take this quiz</a>
+        <a href="{% url 'quizapp:quiz_index' %}" class="btn btn-primary btn-lg" role="button">&laquo; Back to quizzes</a>
     </div>
 
 {% endblock %}
