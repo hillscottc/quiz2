@@ -47,6 +47,10 @@ class RawLog(CommonModel):
     """Log without foreign keys"""
     message = models.CharField(max_length=100)
 
+    def __unicode__(self):
+        return u"%s %s" % (self.created_at.strftime('%c'),
+                           self.message)
+
 
 class Question(CommonModel):
     quiz = models.ForeignKey(Quiz)

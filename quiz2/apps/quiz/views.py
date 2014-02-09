@@ -14,8 +14,9 @@ def home(request):
 
 
 def log(request):
-    log_list = RawLog.objects.all()
-    return render(request, 'quizapp/log.html', {log_list: log_list})
+    """The log page."""
+    log_list = RawLog.objects.all().order_by('-created_at')[:50]
+    return render(request, 'quizapp/log.html', {'log_list': log_list})
 
 
 def quiz_index(request):
@@ -26,11 +27,13 @@ def quiz_index(request):
 
 def quiz_take(request, quiz_id):
     """List questions for quiz."""
+    # log_message(message="someone started a quiz")
+
     if request.method == 'POST':
         return HttpResponse("You posted %s" % request.REQUEST)
         #request.POST.get("title", "")
     else:
-        log_message(message="someone started a quiz")
+        log_message(message="started a quiz", taker=request.user)
         quiz = Quiz.objects.get(pk=quiz_id)
         context = {'quiz': quiz,
                    'q_list': Question.objects.filter(quiz=quiz)}
