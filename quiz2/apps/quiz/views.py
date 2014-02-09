@@ -6,7 +6,8 @@ from quiz2.apps.quiz.quiz_mgr import log_message
 
 from django.contrib.auth.decorators import login_required
 from django.forms.models import modelformset_factory
-from django.forms import HiddenInput
+from django.forms import HiddenInput, Textarea
+from django.contrib import messages
 
 
 def home(request):
@@ -174,39 +175,49 @@ def answer_add(request, question_id):
                   {'question': question,
                    'form': form})
 
-## This works, but not used right now. Uses formset.
-# def manage_questions(request, quiz_id):
-#     quiz = Quiz.objects.get(pk=quiz_id)
-#     QuestionFormSet = modelformset_factory(
-#         Question, fields=('text',), can_delete=True,
-#         can_order=True, extra=0)
-#
-#     if request.method == 'POST':
-#         formset = QuestionFormSet(request.POST, request.FILES)
-#         if formset.is_valid():
-#             # do something with the formset.cleaned_data
-#             pass
-#     else:
-#         formset = QuestionFormSet(
-#             queryset=Question.objects.filter(quiz=quiz))
-#
-#     return render(request, 'quiz/question/manage_questions.html',
-#                               {'quiz': quiz, 'formset': formset})
-#
-# def manage_answers(request, question_id):
-#     question = Question.objects.get(pk=question_id)
-#     AnswerFormSet = modelformset_factory(
-#         Answer, fields=('text',), can_delete=True, can_order=True,
-#         extra=0)
-#
-#     if request.method == 'POST':
-#         formset = AnswerFormSet(request.POST, request.FILES)
-#         if formset.is_valid():
-#             # do something with the formset.cleaned_data
-#             pass
-#     else:
-#         formset = AnswerFormSet(queryset=Answer.objects.filter(question=question))
-#
-#     return render(request, 'quiz/question/manage_answers.html',
-#                               {'question': question,
-#                                'formset': formset})
+
+def questions_manage(request, quiz_id):
+    """Manage set of answers"""
+    quiz = Quiz.objects.get(pk=quiz_id)
+    QuestionFormSet = modelformset_factory(
+        Question,
+        fields=('text',),
+        widgets = {'text': Textarea(attrs={'cols': 80, 'rows': 2}), },
+        can_delete=True,
+        # can_order=True,
+        extra=0)
+
+    if request.method == 'POST':
+        formset = QuestionFormSet(request.POST, request.FILES)
+        if formset.is_valid():
+            # do something with the formset.cleaned_data?
+            formset.save()
+            messages.success(request, 'Questions updated.')
+            # return HttpResponseRedirect(reverse('quizapp:questions_manage', args=(quiz_id,)))
+    else:
+        formset = QuestionFormSet(
+            queryset=Question.objects.filter(quiz=quiz))
+
+    return render(request, 'quizapp/question/questions_manage.html',
+                              {'quiz': quiz, 'formset': formset})
+
+
+def answers_manage(request, question_id):
+    """Manage set of answers"""
+    question = Question.objects.get(pk=question_id)
+    AnswerFormSet = modelformset_factory(
+        Answer, fields=('text',),
+        can_delete=True,
+        can_order=True,
+        extra=0)
+
+    if request.method == 'POST':
+        formset = AnswerFormSet(request.POST, request.FILES)
+        if formset.is_valid():
+            # do something with the formset.cleaned_data
+            pass
+    else:
+        formset = AnswerFormSet(queryset=Answer.objects.filter(question=question))
+
+    return render(request, 'quizapp/answer/answers_manage.html',
+                  {'question': question, 'formset': formset})

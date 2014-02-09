@@ -32,7 +32,12 @@ class QuizForm(forms.ModelForm):
 class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question
-        exclude = ('created_at', 'updated_at')
+        # exclude = ('created_at', 'updated_at')
+        fields = ('text', )
+        widgets = {
+            'text': forms.Textarea(attrs={'cols': 80, 'rows': 20}),
+        }
+
 
     ## Init this one with user also. MAybe not needed.
     # def __init__(self, user, *args, **kwargs):

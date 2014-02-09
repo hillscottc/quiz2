@@ -1,0 +1,97 @@
+{% extends "quizapp/quiz_base.html" %}
+
+{% block content %}
+
+
+    <div class="pull-right">
+        <a href="{% url 'quizapp:quiz_take' quiz.id %}" class="btn btn-info btn-lg" role="button">Take this quiz</a>
+        <a href="{% url 'quizapp:quiz_index' %}" class="btn btn-primary btn-lg" role="button">&laquo; Back to quizzes</a>
+    </div>
+
+    <div class="page-header">
+        <h1>Edit Questions</h1>
+    </div>
+
+    <div>
+        <h2>{{ quiz }}</h2>
+    </div>
+
+
+
+    <br/>
+
+
+    <form method="post" action="{% url 'quizapp:questions_manage' quiz.id %}">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+    {% if formset|length > 5  %}
+        <div>
+            <button type="submit" name="update" class="btn btn-success">Submit these updates</button>
+            <a href="{% url 'quizapp:question_add' quiz.id %}" class="btn btn-info" role="button">Add a question</a>
+            <a href="{% url 'quizapp:quiz_delete' quiz.id %}" class="btn btn-danger" role="button">Delete this quiz</a>
+        </div>
+    {% endif %}
+
+<br/>
+
+        {{ formset.management_form }}
+        {% for form in formset %}
+            {{ form.id }}
+
+{#            {% for field in form.visible_fields %}#}
+{#                    {{ field.errors }}#}
+{#            {% endfor %}#}
+{##}
+{#                    {% for field in form.hidden_fields %}#}
+{#                    {{ field.errors }}#}
+{#            {% endfor %}#}
+
+
+            <ul>
+                <li>
+                    {% if formset.can_order %}
+                        {{ form.ORDER }}
+                    {% endif %}
+                    {{ form.text }}
+                    {% if formset.can_delete %}
+                        {{ form.DELETE }} DELETE
+                    {% endif %}
+                    <div>
+                        (<a href="{% url 'quizapp:answers_manage' form.instance.pk %}">manage answers</a>)
+
+                        <ul>
+                            {% for answer in form.instance.answers %}
+                                <li>{{ answer.text }}
+                                    {% if answer.correct %}
+                                        (CORRECT)
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        {% endfor %}
+
+        <div>
+            <button type="submit" class="btn btn-success">Submit these updates</button>
+            <a href="{% url 'quizapp:question_add' quiz.id %}" class="btn btn-info" role="button">Add a question</a>
+            <a href="{% url 'quizapp:quiz_delete' quiz.id %}" class="btn btn-danger" role="button">Delete this quiz</a>
+        </div>
+
+    </form>
+
+    <br/>
+
+
+    <br/>
+    <div>
+        <a href="{% url 'quizapp:quiz_take' quiz.id %}" class="btn btn-info btn-lg" role="button">Take this quiz</a>
+        <a href="{% url 'quizapp:quiz_index' %}" class="btn btn-primary btn-lg" role="button">&laquo; Back to quizzes</a>
+    </div>
+
+{% endblock %}
+
+
+
