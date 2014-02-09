@@ -30,7 +30,6 @@ def quiz_add(request):
         form = QuizForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             form.save()
-            # return HttpResponseRedirect(reverse('manage_quiz',  kwargs={'quiz_id': quiz_id}))
             return HttpResponseRedirect(reverse('quizapp:quiz_index'))
     else:
         form = QuizForm(initial={'user': request.user})
@@ -41,8 +40,6 @@ def quiz_add(request):
 
 def quiz_take(request, quiz_id):
     """List questions for quiz."""
-    # log_message(message="someone started a quiz")
-
     if request.method == 'POST':
         return HttpResponse("You posted %s" % request.REQUEST)
         #request.POST.get("title", "")
@@ -89,13 +86,10 @@ def question_manage(request, question_id):
     if request.method == 'POST':
         if 'delete' in request.POST:
             question.delete()
-            # return HttpResponseRedirect('/quiz/manage_quiz/%s/' % quiz.id)
             return HttpResponseRedirect(reverse('quiz_manage', args=(quiz.id,)))
         form = QuestionForm(request.POST, instance=question)
         if form.is_valid():
             form.save()
-            # return HttpResponse("Thanks for answering. You posted %s" % request.REQUEST)
-            # return HttpResponseRedirect('/quiz/manage_quiz/%s/' % quiz.id)
             return HttpResponseRedirect(reverse('quiz_manage', args=(quiz.id,)))
     else:
         form = QuestionForm(initial={'quiz': question.quiz,
@@ -124,19 +118,13 @@ def answer_post(request, a_id):
 def answer_manage(request, answer_id):
     answer = Answer.objects.get(pk=answer_id)
     question = Question.objects.get(answer=answer)
-    # quiz = Quiz.objects.get(question=question)
     if request.method == 'POST':
         if 'delete' in request.POST:
             answer.delete()
-            # return HttpResponseRedirect('/quiz/manage_question/%s/' % question.id)
             return HttpResponseRedirect(reverse('question_manage', args=(question.id,)))
-        # form = AnswerForm(request.POST)
         form = AnswerForm(request.POST, instance=answer)
         if form.is_valid():
-            # return HttpResponse("Thanks for answering. You posted %s" % request.REQUEST)
-            # form = AnswerForm(request.POST, instance=answer)
             form.save()
-            # return HttpResponseRedirect('/quiz/manage_question/%s/' % question.id)
             return HttpResponseRedirect(reverse('question_manage', args=(question.id,)))
 
     else:
@@ -159,7 +147,6 @@ def question_add(request, quiz_id):
         form = QuestionForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             form.save()
-            # return HttpResponseRedirect(reverse('manage_quiz',  kwargs={'quiz_id': quiz_id}))
             return HttpResponseRedirect(reverse('quizapp:quiz_manage', args=(quiz_id,)))
     else:
         form = QuestionForm(initial={'quiz': quiz,
@@ -173,13 +160,10 @@ def question_add(request, quiz_id):
 @login_required
 def answer_add(request, question_id):
     question = Question.objects.get(pk=question_id)
-    # quiz = Quiz.objects.get(question=question)
     if request.method == 'POST':
         form = AnswerForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             form.save()
-            # return HttpResponse("Saved! You posted %s" % request.REQUEST)
-            # return HttpResponseRedirect('/quiz/manage_question/%s/' % question_id)
             return HttpResponseRedirect(reverse('quizapp:question_manage', args=(question_id,)))
 
     else:

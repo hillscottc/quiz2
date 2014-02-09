@@ -15,20 +15,14 @@ urlpatterns = patterns(
     url(r'quiz/delete/(?P<quiz_id>\d+)/$', views.quiz_delete, name="quiz_delete"),
     url(r'quiz/add/$', views.quiz_add, name="quiz_add"),
 
-    url(r'log/$', views.log, name="log"),
-
-
     url(r'answer/post/(?P<a_id>\d+)/$', views.answer_post, name='answer_post'),
     url(r'answer/manage/(?P<answer_id>\d+)/$', views.answer_manage, name='answer_manage'),
     url(r'answer/add/(?P<question_id>\d+)/$', views.answer_add, name='answer_add'),
 
-
     url(r'question/manage/(?P<question_id>\d+)/$', views.question_manage, name='question_manage'),
     url(r'question/add/(?P<quiz_id>\d+)/$', views.question_add, name='question_add'),
 
-
-
-
+    url(r'log/$', views.log, name="log"),
     url(r'admin/', include(quiz_admin_site.urls)),
 )
 
