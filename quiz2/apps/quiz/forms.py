@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from quiz2.apps.quiz.models import Question, UserProfile, Answer
-from django.forms.models import inlineformset_factory
+from quiz2.apps.quiz.models import Question, UserProfile, Answer, Quiz
 
 
 class UserForm(forms.ModelForm):
@@ -22,6 +21,12 @@ class UserProfileForm(forms.ModelForm):
 class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
+
+
+class QuizForm(forms.ModelForm):
+    class Meta:
+        model = Quiz
+        exclude = ('created_at', 'updated_at')
 
 
 class QuestionForm(forms.ModelForm):

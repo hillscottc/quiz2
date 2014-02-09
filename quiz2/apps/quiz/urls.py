@@ -13,6 +13,7 @@ urlpatterns = patterns(
     url(r'^quiz/take/(?P<quiz_id>\d+)/$', views.quiz_take, name='quiz_take'),
     url(r'quiz/manage/(?P<quiz_id>\d+)/$', views.quiz_manage, name='quiz_manage'),
     url(r'quiz/delete/(?P<quiz_id>\d+)/$', views.quiz_delete, name="quiz_delete"),
+    url(r'quiz/add/$', views.quiz_add, name="quiz_add"),
 
     url(r'log/$', views.log, name="log"),
 

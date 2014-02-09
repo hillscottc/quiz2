@@ -1,7 +1,7 @@
 from django.shortcuts import HttpResponse, render, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from quiz2.apps.quiz.models import Quiz, Question, Answer, RawLog
-from quiz2.apps.quiz.forms import QuestionForm, AnswerForm
+from quiz2.apps.quiz.forms import QuestionForm, AnswerForm, QuizForm
 from quiz2.apps.quiz.quiz_mgr import log_message
 
 from django.contrib.auth.decorators import login_required
@@ -23,6 +23,20 @@ def quiz_index(request):
     """List all quizzes."""
     context = {'quiz_list': Quiz.objects.all()}
     return render(request, 'quizapp/quiz/index.html', context)
+
+
+def quiz_add(request):
+    if request.method == 'POST':
+        form = QuizForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            form.save()
+            # return HttpResponseRedirect(reverse('manage_quiz',  kwargs={'quiz_id': quiz_id}))
+            return HttpResponseRedirect(reverse('quizapp:quiz_index'))
+    else:
+        form = QuizForm(initial={'user': request.user})
+        form.fields['user'].widget = HiddenInput()
+
+    return render(request, 'quizapp/quiz/add.html', {'form': form})
 
 
 def quiz_take(request, quiz_id):
@@ -146,7 +160,7 @@ def question_add(request, quiz_id):
         if form.is_valid():
             form.save()
             # return HttpResponseRedirect(reverse('manage_quiz',  kwargs={'quiz_id': quiz_id}))
-            return HttpResponseRedirect(reverse('quiz_manage', args=(quiz_id,)))
+            return HttpResponseRedirect(reverse('quizapp:quiz_manage', args=(quiz_id,)))
     else:
         form = QuestionForm(initial={'quiz': quiz,
                                      'user': request.user})
@@ -166,7 +180,7 @@ def answer_add(request, question_id):
             form.save()
             # return HttpResponse("Saved! You posted %s" % request.REQUEST)
             # return HttpResponseRedirect('/quiz/manage_question/%s/' % question_id)
-            return HttpResponseRedirect(reverse('question_manage', args=(question_id,)))
+            return HttpResponseRedirect(reverse('quizapp:question_manage', args=(question_id,)))
 
     else:
         form = AnswerForm(initial={'question': question})

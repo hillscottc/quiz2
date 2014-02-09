@@ -1,0 +1,35 @@
+{% extends "quizapp/quiz_base.html" %}
+
+{% block content %}
+
+    <div class="page-header">
+        <h1>Add a new Quiz</h1>
+    </div>
+
+
+    <form action="{% url 'quizapp:quiz_add' %}" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        {% for field in form.visible_fields %}
+            <div class="fieldWrapper">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+            </div>
+        {% endfor %}
+
+        <p>
+            <a href="{% url 'quizapp:quiz_index' %}">
+                <button type="button" name="cancel" class="btn btn-danger">Cancel</button>
+            </a>
+            <button type="submit" class="btn btn-success">Add this quiz</button>
+        </p>
+
+
+    </form>
+
+{% endblock %}
