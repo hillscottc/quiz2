@@ -1,6 +1,6 @@
 from django.shortcuts import HttpResponse, render, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from quiz2.apps.quiz.models import Quiz, Question, Answer
+from quiz2.apps.quiz.models import Quiz, Question, Answer, RawLog
 from quiz2.apps.quiz.forms import QuestionForm, AnswerForm
 from quiz2.apps.quiz.quiz_mgr import log_message
 
@@ -11,6 +11,11 @@ from django.forms import HiddenInput
 
 def home(request):
     return render(request, 'quizapp/home.html', {})
+
+
+def log(request):
+    log_list = RawLog.objects.all()
+    return render(request, 'quizapp/log.html', {log_list: log_list})
 
 
 def quiz_index(request):

@@ -14,7 +14,7 @@ urlpatterns = patterns(
     url(r'quiz/manage/(?P<quiz_id>\d+)/$', views.quiz_manage, name='quiz_manage'),
     url(r'quiz/delete/(?P<quiz_id>\d+)/$', views.quiz_delete, name="quiz_delete"),
 
-
+    url(r'log/$', views.log, name="log"),
 
 
     url(r'answer/post/(?P<a_id>\d+)/$', views.answer_post, name='answer_post'),
