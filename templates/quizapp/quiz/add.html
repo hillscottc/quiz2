@@ -2,10 +2,8 @@
 
 {% block content %}
 
-    <div class="page-header">
-        <h1>Add a new Quiz</h1>
-    </div>
 
+    {% include "quizapp/snips/page_header.html" with header_text="Add a new quiz" %}
 
     <form action="{% url 'quizapp:quiz_add' %}" method="post">
         {% csrf_token %}

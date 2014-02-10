@@ -8,17 +8,14 @@
         {% include "quizapp/buttons/back.html" with what="the quizzes" where=back_to_url %}
     </div>
 
-    <div class="page-header">
-        <h1>{{ quiz.name }}</h1>
-    </div>
 
-
+    {% include "quizapp/snips/page_header.html" with header_text=quiz.name %}
 
     {% if q_list %}
         <div class="question_list">
             <ol class="list-group">
                 {% for question in q_list %}
-                    {% include "quizapp/question/snip.html" %}
+                    {% include "quizapp/snips/question.html" %}
                 {% endfor %}
             </ol>
         </div>
@@ -27,7 +24,7 @@
     {% endif %}
 
     <div>
-        <a href="{% url 'quizapp:quiz_manage' quiz.id %}" class="btn btn-info btn-lg" role="button">Edit this quiz</a>
+        <a href="{% url 'quizapp:quiz_edit' quiz.id %}" class="btn btn-info btn-lg" role="button">Edit this quiz</a>
          {% include "quizapp/buttons/back.html" with what="the quizzes" where=back_to_url %}
     </div>
 

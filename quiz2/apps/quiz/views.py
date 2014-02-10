@@ -54,26 +54,6 @@ def quiz_take(request, quiz_id):
 
 
 @login_required
-def quiz_manage(request, quiz_id):
-    quiz = Quiz.objects.get(pk=quiz_id)
-    QuestionFormSet = modelformset_factory(
-        Question, fields=('text',),
-        can_delete=True, can_order=True, extra=0)
-
-    if request.method == 'POST':
-        formset = QuestionFormSet(request.POST, request.FILES)
-        if formset.is_valid():
-            # do something with the formset.cleaned_data
-            pass
-    else:
-        formset = QuestionFormSet(
-            queryset=Question.objects.filter(quiz=quiz))
-
-    return render(request, 'quizapp/quiz/manage.html',
-                  {'quiz': quiz, 'formset': formset})
-
-
-@login_required
 def quiz_delete(request, quiz_id):
     quiz = Quiz.objects.get(pk=quiz_id)
     quiz.delete()
@@ -153,7 +133,7 @@ def question_add(request, quiz_id):
     else:
         form = QuestionForm(initial={'quiz': quiz,
                                      'user': request.user})
-        form.fields['quiz'].widget = HiddenInput()
+        # form.fields['quiz'].widget = HiddenInput()
 
     return render(request, 'quizapp/question/add.html',
                   {'quiz': quiz, 'form': form})
@@ -202,6 +182,7 @@ def quiz_edit(request, quiz_id):
     return render(request, 'quizapp/quiz/edit.html',
                   {'quiz': quiz,
                    'back_to_url': reverse('quizapp:quiz_index'),
+                   'add_url': reverse('quizapp:question_add', args=[quiz_id]),
                    'formset': formset})
 
 
@@ -225,4 +206,5 @@ def answers_edit(request, question_id):
     return render(request, 'quizapp/answer/edit.html',
                   {'question': question,
                    'back_to_url': reverse('quizapp:quiz_edit', args=[question.quiz.id]),
+                   'add_url': reverse('quizapp:answer_add', args=[question_id]),
                    'formset': formset})

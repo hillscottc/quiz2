@@ -7,9 +7,8 @@
         <h1>Add Question</h1>
     </div>
 
-       <div class="page-header">
-        <h2>{{ quiz }}</h2>
-    </div>
+
+    {% include "quizapp/snips/quiz_header.html" with quiz=quiz %}
 
 
 
@@ -28,7 +27,7 @@
         </div>
 
             <p>
-            <a href="{% url 'quizapp:quiz_manage' quiz.id %}">
+            <a href="{% url 'quizapp:quiz_edit' quiz.id %}">
                 <button type="button" name="cancel" class="btn btn-danger">Cancel</button>
             </a>
             <button type="submit" name="update" class="btn btn-success">Add this question</button>

@@ -4,13 +4,12 @@
 {% block content %}
 
 
-    <div class="page-header">
-        <h1>Add Answer</h1>
-    </div>
 
-    <div>
-        <h2>{{ question.quiz }}</h2>
-    </div>
+    {% include "quizapp/snips/page_header.html" with header_text="Add Answer" %}
+
+    {% include "quizapp/snips/quiz_header.html" with quiz=question.quiz  %}
+
+
 
     <h3>New Question</h3>
     <form action="{% url 'quizapp:answer_add' question.id %}" method="post">
@@ -29,7 +28,7 @@
         {% endfor %}
 
         <p>
-            <a href="{% url 'quizapp:question_manage' question.id %}">
+            <a href="{% url 'quizapp:quiz_edit' question.quiz.id %}">
                 <button type="button" name="cancel" class="btn btn-danger">Cancel</button>
             </a>
             <button type="submit" name="update" class="btn btn-success">Add this answer</button>

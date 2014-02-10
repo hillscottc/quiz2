@@ -3,20 +3,13 @@
 
 {% block content %}
 
-
-
     <div class="pull-right">
         {% include "quizapp/buttons/back.html" with what="the quiz" where=back_to_url %}
     </div>
 
+    {% include "quizapp/snips/page_header.html" with header_text="Edit Answers" %}
 
-    <div class="page-header">
-        <h1>Edit Answers</h1>
-    </div>
-
-    <div>
-        <h3>{{ question.quiz }}</h3>
-    </div>
+    {% include "quizapp/snips/quiz_header.html" with quiz=question.quiz %}
 
     <div>
         <h3>{{ question }}</h3>
@@ -28,6 +21,8 @@
         </table>
         {% include "quizapp/buttons/submit.html" with what="these answers" %}
     </form>
+
+    {% include "quizapp/buttons/add.html" with what="an answer" add_url=add_url%}
 
 
     {% load static %}

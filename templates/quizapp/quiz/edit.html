@@ -8,15 +8,10 @@
         {% include "quizapp/buttons/back.html" with what="the quizzes" where=back_to_url %}
     </div>
 
-    <div class="page-header">
-        <h1>Edit Questions</h1>
-    </div>
 
-    <div>
-        <h2>{{ quiz }}</h2>
-    </div>
+    {% include "quizapp/snips/page_header.html" with header_text="Edit Questions" %}
 
-
+    {% include "quizapp/snips/quiz_header.html" with quiz=quiz %}
 
     <br/>
 
@@ -28,7 +23,7 @@
     {% if formset|length > 5  %}
         <div>
             {% include "quizapp/buttons/submit.html" with what="your updates"%}
-            {% include "quizapp/buttons/add.html" with what="a question" %}
+            {% include "quizapp/buttons/add.html" with what="a question" add_url=add_url%}
             {% include "quizapp/buttons/delete.html" with what="this quiz" %}
         </div>
     {% endif %}
@@ -76,7 +71,7 @@
 
         <div>
             {% include "quizapp/buttons/submit.html" with what="your updates" %}
-            {% include "quizapp/buttons/add.html" with what="a question" %}
+            {% include "quizapp/buttons/add.html" with what="a question" add_url=add_url%}
             {% include "quizapp/buttons/delete.html" with what="this quiz" %}
         </div>
 

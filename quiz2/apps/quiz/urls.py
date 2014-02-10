@@ -11,7 +11,6 @@ urlpatterns = patterns(
     url(r'^$', views.home, name='quizapp_home'),
     url(r'^quiz/index/$', views.quiz_index, name='quiz_index'),
     url(r'^quiz/take/(?P<quiz_id>\d+)/$', views.quiz_take, name='quiz_take'),
-    url(r'quiz/manage/(?P<quiz_id>\d+)/$', views.quiz_manage, name='quiz_manage'),
     url(r'quiz/delete/(?P<quiz_id>\d+)/$', views.quiz_delete, name="quiz_delete"),
     url(r'quiz/add/$', views.quiz_add, name="quiz_add"),
     url(r'quiz/edit/(?P<quiz_id>\d+)/$', views.quiz_edit, name='quiz_edit'),

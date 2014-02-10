@@ -35,14 +35,12 @@ class QuestionForm(forms.ModelForm):
         # exclude = ('created_at', 'updated_at')
         fields = ('text', )
         widgets = {
-            'text': forms.Textarea(attrs={'cols': 80, 'rows': 20}),
+            'text': forms.Textarea(attrs={'cols': 80, 'rows': 2}),
         }
 
-
-    ## Init this one with user also. MAybe not needed.
-    # def __init__(self, user, *args, **kwargs):
-    #     super(QuestionForm, self).__init__(*args, **kwargs)
-    #     if not user.is_authenticated():
-    #         # self.fields['captcha'] = CaptchaField()
-    #         pass
+    def __init__(self, *args, **kwargs):
+        super(QuestionForm, self).__init__(*args, **kwargs)
+        # self.fields['text'].label = 'Question text:'
+        # if not user.is_authenticated():
+        #     pass
 

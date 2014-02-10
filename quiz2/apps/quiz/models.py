@@ -54,7 +54,8 @@ class RawLog(CommonModel):
 
 class Question(CommonModel):
     quiz = models.ForeignKey(Quiz)
-    text = models.CharField(max_length=255)
+    text = models.CharField(max_length=255,
+                            verbose_name='question text',)
 
     class Meta:
         unique_together = ("text", "quiz")
