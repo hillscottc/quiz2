@@ -17,12 +17,8 @@ urlpatterns = patterns(
 
 
     url(r'answer/post/(?P<a_id>\d+)/$', views.answer_post, name='answer_post'),
-    url(r'answer/manage/(?P<answer_id>\d+)/$', views.answer_manage, name='answer_manage'),
     url(r'answers/edit/(?P<question_id>\d+)/$', views.answers_edit, name='answers_edit'),
     url(r'answer/add/(?P<question_id>\d+)/$', views.answer_add, name='answer_add'),
-
-    url(r'question/manage/(?P<question_id>\d+)/$', views.question_manage, name='question_manage'),
-
 
     url(r'question/add/(?P<quiz_id>\d+)/$', views.question_add, name='question_add'),
 
