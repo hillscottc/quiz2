@@ -15,7 +15,7 @@
                 <tr>
                     <th style="width: 35px">id</th>
                     <th>Name</th>
-                    <th>Org</th>
+{#                    <th>Org</th>#}
                     <th>Creator</th>
                     <th>Created</th>
                     <th>Updated</th>
@@ -26,7 +26,7 @@
                     <tr>
                         <td>{{ quiz.id }}</td>
                         <td><a href="{% url 'quizapp:quiz_take' quiz.id %}">{{ quiz }}</a></td>
-                        <td>{{ quiz.organization }}</td>
+{#                        <td>{{ quiz.organization }}</td>#}
                         <td>{{ quiz.created_at }}</td>
                         <td>{{ quiz.updated_at }}</td>
                     </tr>
