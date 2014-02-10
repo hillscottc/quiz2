@@ -224,5 +224,5 @@ def answers_edit(request, question_id):
 
     return render(request, 'quizapp/answer/edit.html',
                   {'question': question,
-                   'back_to_url': reverse('quizapp:quiz_index'),
+                   'back_to_url': reverse('quizapp:quiz_edit', args=[question.quiz.id]),
                    'formset': formset})

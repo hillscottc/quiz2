@@ -6,7 +6,7 @@
 
 
     <div class="pull-right">
-        {% include "quizapp/buttons/back.html" with what="the quizzes" where=back_to_url %}
+        {% include "quizapp/buttons/back.html" with what="the quiz" where=back_to_url %}
     </div>
 
 
@@ -21,13 +21,18 @@
     <div>
         <h3>{{ question }}</h3>
     </div>
-    <form method="post" action="{% url 'quizapp:answers_edit' question.id %}">
+    <form id="form1" method="post" action="{% url 'quizapp:answers_edit' question.id %}">
         {% csrf_token %}
         <table>
             {{ formset }}
         </table>
-        <button type="submit" class="btn btn-success">Submit these updates</button>
+        {% include "quizapp/buttons/submit.html" with what="these answers" %}
     </form>
+
+
+    {% load static %}
+    <script src="{% static "js/submit_button.js" %}"></script>
+
 {% endblock %}
 
 
