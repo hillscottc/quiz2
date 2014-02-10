@@ -25,7 +25,3 @@ urlpatterns = patterns(
     url(r'log/$', views.log, name="log"),
     url(r'admin/', include(quiz_admin_site.urls)),
 )
-
-
-## Works, but unused for now
-# url(r'manage_questions/(?P<quiz_id>\d+)/$', views.manage_questions),
