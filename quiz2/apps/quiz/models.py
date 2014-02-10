@@ -102,3 +102,14 @@ class QuestionTag(CommonModel):
 
     class Meta:
         unique_together = ("question", "tag")
+
+
+class Organization(CommonModel):
+    """i.e. Mirman. To group the quizzes."""
+    name = models.CharField(max_length=150, unique=True)
+
+
+class QuizOrganization(CommonModel):
+    """"Quizes can belong to one or more models."""
+    quiz = models.ForeignKey(Quiz)
+    organization = models.ForeignKey(Organization)
