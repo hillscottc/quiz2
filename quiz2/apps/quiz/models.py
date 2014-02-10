@@ -34,7 +34,7 @@ class Quiz(CommonModel):
     """Groups the questions."""
     user = models.ForeignKey(User)
     name = models.CharField(max_length=100)
-    organization = models.ForeignKey(Organization, null=True)
+    organization = models.ForeignKey(Organization, blank=True, null=True)
 
     # version = models.PositiveIntegerField(default=1)
 
