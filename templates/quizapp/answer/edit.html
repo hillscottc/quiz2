@@ -3,7 +3,14 @@
 
 {% block content %}
 
-        <div class="page-header">
+
+
+    <div class="pull-right">
+        {% include "quizapp/buttons/back.html" with what="the quizzes" where=back_to_url %}
+    </div>
+
+
+    <div class="page-header">
         <h1>Edit Answers</h1>
     </div>
 
@@ -14,12 +21,12 @@
     <div>
         <h3>{{ question }}</h3>
     </div>
-    <form method="post" action="{% url 'quizapp:answers_manage' question.id %}">
+    <form method="post" action="{% url 'quizapp:answers_edit' question.id %}">
         {% csrf_token %}
         <table>
             {{ formset }}
         </table>
-    <button type="submit" class="btn btn-success">Submit these updates</button>
+        <button type="submit" class="btn btn-success">Submit these updates</button>
     </form>
 {% endblock %}
 

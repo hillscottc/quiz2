@@ -48,6 +48,7 @@ def quiz_take(request, quiz_id):
         log_message(message="started a quiz", taker=request.user)
         quiz = Quiz.objects.get(pk=quiz_id)
         context = {'quiz': quiz,
+                   'back_to_url': reverse('quizapp:quiz_index'),
                    'q_list': Question.objects.filter(quiz=quiz)}
         return render(request, 'quizapp/quiz/take.html', context)
 
@@ -199,10 +200,12 @@ def quiz_edit(request, quiz_id):
             queryset=Question.objects.filter(quiz=quiz))
 
     return render(request, 'quizapp/quiz/edit.html',
-                  {'quiz': quiz, 'formset': formset})
+                  {'quiz': quiz,
+                   'back_to_url': reverse('quizapp:quiz_index'),
+                   'formset': formset})
 
 
-def answers_manage(request, question_id):
+def answers_edit(request, question_id):
     """Manage set of answers"""
     question = Question.objects.get(pk=question_id)
     AnswerFormSet = modelformset_factory(
@@ -219,5 +222,7 @@ def answers_manage(request, question_id):
     else:
         formset = AnswerFormSet(queryset=Answer.objects.filter(question=question))
 
-    return render(request, 'quizapp/answer/answers_manage.html',
-                  {'question': question, 'formset': formset})
+    return render(request, 'quizapp/answer/edit.html',
+                  {'question': question,
+                   'back_to_url': reverse('quizapp:quiz_index'),
+                   'formset': formset})

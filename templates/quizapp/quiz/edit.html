@@ -5,7 +5,7 @@
 
     <div class="pull-right">
         <a href="{% url 'quizapp:quiz_take' quiz.id %}" class="btn btn-info btn-lg" role="button">Take this quiz</a>
-        {% include "quizapp/buttons/back_to_quizzes.html" %}
+        {% include "quizapp/buttons/back.html" with what="the quizzes" where=back_to_url %}
     </div>
 
     <div class="page-header">
@@ -58,7 +58,7 @@
                         {{ form.DELETE }} DELETE
                     {% endif %}
                     <div>
-                        (<a href="{% url 'quizapp:answers_manage' form.instance.pk %}">manage answers</a>)
+                        (<a href="{% url 'quizapp:answers_edit' form.instance.pk %}">edit answers</a>)
 
                         <ul>
                             {% for answer in form.instance.answers %}
@@ -88,7 +88,7 @@
     <br/>
     <div>
         <a href="{% url 'quizapp:quiz_take' quiz.id %}" class="btn btn-info btn-lg" role="button">Take this quiz</a>
-        {% include "quizapp/buttons/back_to_quizzes.html" %}
+         {% include "quizapp/buttons/back.html" with what="the quizzes" where=back_to_url %}
     </div>
 
     {% load static %}
