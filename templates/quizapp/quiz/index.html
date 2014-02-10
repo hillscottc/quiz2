@@ -7,21 +7,39 @@
 
 
     {% if quiz_list %}
-        <div class="quiz_list">
-            <ul class="list-group">
-                {% for quiz in quiz_list %}
-                    <li class="list-group-item">
-                        <a href="{% url 'quizapp:quiz_take' quiz.id %}">{{ quiz }}</a>
-{#                        (<a href="{% url 'take_quiz' quiz.id %}">take</a>,#}
-{#                        <a href="{% url 'quiz2.apps.quiz.views.manage_quiz' quiz.id %}">manage</a>)#}
-                    </li>
-                {% endfor %}
-            </ul>
+        <div style="height: 150px;overflow: auto">
+
+
+            <table class="table table-striped" >
+                <thead>
+                <tr>
+                    <th style="width: 35px">id</th>
+                    <th>Name</th>
+                    <th>Creator</th>
+                    <th>Created</th>
+                    <th>Updated</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for quiz in quiz_list %}
+                    <tr>
+                        <td>{{ quiz.id }}</td>
+                        <td><a href="{% url 'quizapp:quiz_take' quiz.id %}">{{ quiz }}</a></td>
+                        <td>{{ quiz.user }}</td>
+                        <td>{{ quiz.created_at }}</td>
+                        <td>{{ quiz.updated_at }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
         </div>
     {% else %}
         <p>No question sets are available.</p>
     {% endif %}
 
+    <br/>
     <div>
         <a href="{% url 'quizapp:quiz_add' %}"class="btn btn-info" role="button">Add a new Quiz</a>
     </div>
