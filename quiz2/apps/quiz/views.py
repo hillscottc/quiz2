@@ -176,7 +176,7 @@ def answer_add(request, question_id):
                    'form': form})
 
 
-def questions_manage(request, quiz_id):
+def quiz_edit(request, quiz_id):
     """Manage set of answers"""
     quiz = Quiz.objects.get(pk=quiz_id)
     QuestionFormSet = modelformset_factory(
@@ -198,17 +198,17 @@ def questions_manage(request, quiz_id):
         formset = QuestionFormSet(
             queryset=Question.objects.filter(quiz=quiz))
 
-    return render(request, 'quizapp/question/questions_manage.html',
-                              {'quiz': quiz, 'formset': formset})
+    return render(request, 'quizapp/quiz/edit.html',
+                  {'quiz': quiz, 'formset': formset})
 
 
 def answers_manage(request, question_id):
     """Manage set of answers"""
     question = Question.objects.get(pk=question_id)
     AnswerFormSet = modelformset_factory(
-        Answer, fields=('text',),
+        Answer, fields=('text', 'correct'),
         can_delete=True,
-        can_order=True,
+        # can_order=True,
         extra=0)
 
     if request.method == 'POST':

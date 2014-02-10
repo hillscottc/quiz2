@@ -5,7 +5,7 @@
 
     <div class="pull-right">
         <a href="{% url 'quizapp:quiz_take' quiz.id %}" class="btn btn-info btn-lg" role="button">Take this quiz</a>
-        <a href="{% url 'quizapp:quiz_index' %}" class="btn btn-primary btn-lg" role="button">&laquo; Back to quizzes</a>
+        {% include "quizapp/buttons/back_to_quizzes.html" %}
     </div>
 
     <div class="page-header">
@@ -21,15 +21,15 @@
     <br/>
 
 
-    <form method="post" action="{% url 'quizapp:questions_manage' quiz.id %}">
+    <form id="form1" method="post" action="{% url 'quizapp:quiz_edit' quiz.id %}">
         {% csrf_token %}
         {{ form.non_field_errors }}
 
     {% if formset|length > 5  %}
         <div>
-            <button type="submit" name="update" class="btn btn-success">Submit these updates</button>
-            <a href="{% url 'quizapp:question_add' quiz.id %}" class="btn btn-info" role="button">Add a question</a>
-            <a href="{% url 'quizapp:quiz_delete' quiz.id %}" class="btn btn-danger" role="button">Delete this quiz</a>
+            {% include "quizapp/buttons/submit.html" with what="your updates"%}
+            {% include "quizapp/buttons/add.html" with what="a question" %}
+            {% include "quizapp/buttons/delete.html" with what="this quiz" %}
         </div>
     {% endif %}
 
@@ -75,9 +75,9 @@
         {% endfor %}
 
         <div>
-            <button type="submit" class="btn btn-success">Submit these updates</button>
-            <a href="{% url 'quizapp:question_add' quiz.id %}" class="btn btn-info" role="button">Add a question</a>
-            <a href="{% url 'quizapp:quiz_delete' quiz.id %}" class="btn btn-danger" role="button">Delete this quiz</a>
+            {% include "quizapp/buttons/submit.html" with what="your updates" %}
+            {% include "quizapp/buttons/add.html" with what="a question" %}
+            {% include "quizapp/buttons/delete.html" with what="this quiz" %}
         </div>
 
     </form>
@@ -88,8 +88,12 @@
     <br/>
     <div>
         <a href="{% url 'quizapp:quiz_take' quiz.id %}" class="btn btn-info btn-lg" role="button">Take this quiz</a>
-        <a href="{% url 'quizapp:quiz_index' %}" class="btn btn-primary btn-lg" role="button">&laquo; Back to quizzes</a>
+        {% include "quizapp/buttons/back_to_quizzes.html" %}
     </div>
+
+    {% load static %}
+    <script src="{% static "js/quiz_edit.js" %}"></script>
+
 
 {% endblock %}
 

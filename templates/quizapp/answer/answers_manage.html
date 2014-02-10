@@ -3,18 +3,23 @@
 
 {% block content %}
 
-    <h2>Manage Answers</h2>
-    <h3>Quiz</h3>
-    {{ question.quiz }}
+        <div class="page-header">
+        <h1>Edit Answers</h1>
+    </div>
 
-    <h3>Question</h3>
-    {{ question }}
-    <h3>Answers</h3>
-    <form method="post" action="">
+    <div>
+        <h3>{{ question.quiz }}</h3>
+    </div>
+
+    <div>
+        <h3>{{ question }}</h3>
+    </div>
+    <form method="post" action="{% url 'quizapp:answers_manage' question.id %}">
         {% csrf_token %}
         <table>
             {{ formset }}
         </table>
+    <button type="submit" class="btn btn-success">Submit these updates</button>
     </form>
 {% endblock %}
 

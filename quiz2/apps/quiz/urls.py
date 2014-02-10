@@ -14,6 +14,8 @@ urlpatterns = patterns(
     url(r'quiz/manage/(?P<quiz_id>\d+)/$', views.quiz_manage, name='quiz_manage'),
     url(r'quiz/delete/(?P<quiz_id>\d+)/$', views.quiz_delete, name="quiz_delete"),
     url(r'quiz/add/$', views.quiz_add, name="quiz_add"),
+    url(r'quiz/edit/(?P<quiz_id>\d+)/$', views.quiz_edit, name='quiz_edit'),
+
 
     url(r'answer/post/(?P<a_id>\d+)/$', views.answer_post, name='answer_post'),
     url(r'answer/manage/(?P<answer_id>\d+)/$', views.answer_manage, name='answer_manage'),
@@ -21,7 +23,7 @@ urlpatterns = patterns(
     url(r'answer/add/(?P<question_id>\d+)/$', views.answer_add, name='answer_add'),
 
     url(r'question/manage/(?P<question_id>\d+)/$', views.question_manage, name='question_manage'),
-    url(r'questions/manage/(?P<quiz_id>\d+)/$', views.questions_manage, name='questions_manage'),
+
 
     url(r'question/add/(?P<quiz_id>\d+)/$', views.question_add, name='question_add'),
 
