@@ -1,13 +1,10 @@
 
 $(document).ready(function() {
 
-
+    // when form changes, change button from gray to active
     $("#form1 :input").change(function() {
       $(this).closest('form').data('changed', true);
-        alert("changed!")
-//        $('.btn-submit').css("background-color", "yellow");
-        $(".btn-submit").attr('class', 'btn btn-default btn-submit');
+        $(".btn-submit").attr('class', 'btn btn-success btn-submit');
     });
-
 
 });
