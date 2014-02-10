@@ -6,6 +6,8 @@ from quiz2.apps.quiz.admin import quiz_admin_site
 from django.contrib import admin
 admin.autodiscover()
 
+
+
 urlpatterns = patterns(
     '',
     url(r'^$', views.home, name='quizapp_home'),

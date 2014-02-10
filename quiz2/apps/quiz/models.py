@@ -22,10 +22,20 @@ class CommonModel(models.Model):
         abstract = True
 
 
+class Organization(CommonModel):
+    """i.e. Mirman. To group the quizzes."""
+    name = models.CharField(max_length=150, unique=True)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Quiz(CommonModel):
     """Groups the questions."""
     user = models.ForeignKey(User)
     name = models.CharField(max_length=100)
+    organization = models.ForeignKey(Organization, null=True)
+
     # version = models.PositiveIntegerField(default=1)
 
     class Meta:
@@ -104,12 +114,3 @@ class QuestionTag(CommonModel):
         unique_together = ("question", "tag")
 
 
-class Organization(CommonModel):
-    """i.e. Mirman. To group the quizzes."""
-    name = models.CharField(max_length=150, unique=True)
-
-
-class QuizOrganization(CommonModel):
-    """"Quizes can belong to one or more models."""
-    quiz = models.ForeignKey(Quiz)
-    organization = models.ForeignKey(Organization)
