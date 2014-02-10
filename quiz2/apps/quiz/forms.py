@@ -33,7 +33,7 @@ class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question
         # exclude = ('created_at', 'updated_at')
-        fields = ('text', )
+        fields = ('text', 'quiz')
         widgets = {
             'text': forms.Textarea(attrs={'cols': 80, 'rows': 2}),
         }

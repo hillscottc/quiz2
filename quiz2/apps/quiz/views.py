@@ -129,11 +129,11 @@ def question_add(request, quiz_id):
         form = QuestionForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('quizapp:quiz_manage', args=(quiz_id,)))
+            return HttpResponseRedirect(reverse('quizapp:quiz_edit', args=(quiz_id,)))
     else:
         form = QuestionForm(initial={'quiz': quiz,
                                      'user': request.user})
-        # form.fields['quiz'].widget = HiddenInput()
+        form.fields['quiz'].widget = HiddenInput()
 
     return render(request, 'quizapp/question/add.html',
                   {'quiz': quiz, 'form': form})
@@ -146,7 +146,7 @@ def answer_add(request, question_id):
         form = AnswerForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('quizapp:question_manage', args=(question_id,)))
+            return HttpResponseRedirect(reverse('quizapp:quiz_edit', args=(question.quiz.id,)))
 
     else:
         form = AnswerForm(initial={'question': question})

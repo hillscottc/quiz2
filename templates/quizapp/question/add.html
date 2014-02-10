@@ -16,6 +16,8 @@
         {% csrf_token %}
         {{ form.non_field_errors }}
 
+        {{ form.id }}
+
         {% for hidden in form.hidden_fields %}
             {{ hidden }}
         {% endfor %}
