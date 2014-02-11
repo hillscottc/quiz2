@@ -23,7 +23,7 @@ def log(request):
 
 def quiz_index(request):
     """List all quizzes."""
-    context = {'quiz_list': Quiz.objects.all()}
+    context = {'quiz_list': Quiz.objects.all().order_by('-updated_at')}
     return render(request, 'quizapp/quiz/index.html', context)
 
 

@@ -21,8 +21,9 @@
         {{ form.non_field_errors }}
 
         {% if formset|length > 5  %}
+            {% include "quizapp/snips/form_actions.html" with cancel_what="these changes" back_to_url=back_to_url submit_what="these answers" %}
             <div>
-                {% include "quizapp/buttons/submit.html" with what="your updates"%}
+{#                {% include "quizapp/buttons/submit.html" with what="your updates"%}#}
                 {% include "quizapp/buttons/add.html" with what="a question" add_url=add_url%}
                 {% include "quizapp/buttons/delete.html" with what="this quiz" %}
             </div>
@@ -69,8 +70,12 @@
             </ul>
         {% endfor %}
 
+
+    {% include "quizapp/snips/form_actions.html" with cancel_what="these changes" back_to_url=back_to_url submit_what="these answers" %}
+
+
         <div>
-            {% include "quizapp/buttons/submit.html" with what="your updates" %}
+{#            {% include "quizapp/buttons/submit.html" with what="your updates" %}#}
             {% include "quizapp/buttons/add.html" with what="a question" add_url=add_url%}
             {% include "quizapp/buttons/delete.html" with what="this quiz" %}
         </div>
@@ -87,7 +92,7 @@
     </div>
 
     {% load static %}
-    <script src="{% static "js/submit_button.js" %}"></script>
+    <script src="{% static "js/form_change.js" %}"></script>
 
 
 {% endblock %}

@@ -19,14 +19,15 @@
         <table>
             {{ formset }}
         </table>
-        {% include "quizapp/buttons/submit.html" with what="these answers" %}
+
+        {% include "quizapp/snips/form_actions.html" with cancel_what="these changes" back_to_url=back_to_url submit_what="these answers" %}
+
     </form>
 
-    {% include "quizapp/buttons/add.html" with what="an answer" add_url=add_url%}
-
+    {% include "quizapp/buttons/add.html" with what="a question" add_url=add_url%}
 
     {% load static %}
-    <script src="{% static "js/submit_button.js" %}"></script>
+    <script src="{% static "js/form_change.js" %}"></script>
 
 {% endblock %}
 
