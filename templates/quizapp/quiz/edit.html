@@ -69,17 +69,9 @@
                 </li>
             </ul>
         {% endfor %}
-
-
-    {% include "quizapp/snips/form_actions.html" with cancel_what="these changes" back_to_url=back_to_url submit_what="these answers" %}
-
-
-        <div>
-{#            {% include "quizapp/buttons/submit.html" with what="your updates" %}#}
-            {% include "quizapp/buttons/add.html" with what="a question" add_url=add_url%}
-            {% include "quizapp/buttons/delete.html" with what="this quiz" %}
-        </div>
-
+        {% include "quizapp/snips/form_actions.html" with cancel_what="these changes" back_to_url=back_to_url submit_what="these answers" %}
+        <br/>
+        {% include "quizapp/snips/add_delete.html" with add_what="another question" add_url=add_url back_to_url=back_to_url delete_url=delete_url  %}
     </form>
 
     <br/>

@@ -135,6 +135,8 @@ def quiz_edit(request, quiz_id):
     return render(request, 'quizapp/quiz/edit.html',
                   {'quiz': quiz,
                    'back_to_url': reverse('quizapp:quiz_index'),
+                   'delete_url': reverse('quizapp:quiz_delete',
+                                         args=[quiz_id]),
                    'add_url': reverse('quizapp:question_add',
                                       args=[quiz_id]),
                    'formset': formset})

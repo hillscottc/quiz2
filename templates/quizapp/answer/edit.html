@@ -21,10 +21,10 @@
         </table>
 
         {% include "quizapp/snips/form_actions.html" with cancel_what="these changes" back_to_url=back_to_url submit_what="these answers" %}
-
+        <br/>
+        {% include "quizapp/snips/add_delete.html" with add_what="another answer" add_url=add_url back_to_url=back_to_url delete_url=delete_url  %}
     </form>
 
-    {% include "quizapp/buttons/add.html" with what="a question" add_url=add_url%}
 
     {% load static %}
     <script src="{% static "js/form_change.js" %}"></script>
