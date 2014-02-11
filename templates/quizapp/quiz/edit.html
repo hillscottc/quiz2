@@ -5,7 +5,6 @@
 
     <div class="pull-right">
         <a href="{% url 'quizapp:quiz_take' quiz.id %}" class="btn btn-info btn-lg" role="button">Take this quiz</a>
-        {% include "quizapp/buttons/back.html" with what="the quizzes" where=back_to_url %}
     </div>
 
 
@@ -22,11 +21,8 @@
 
         {% if formset|length > 5  %}
             {% include "quizapp/snips/form_actions.html" with cancel_what="these changes" back_to_url=back_to_url submit_what="these answers" %}
-            <div>
-{#                {% include "quizapp/buttons/submit.html" with what="your updates"%}#}
-                {% include "quizapp/buttons/add.html" with what="a question" add_url=add_url%}
-                {% include "quizapp/buttons/delete.html" with what="this quiz" %}
-            </div>
+            <br/>
+            {% include "quizapp/snips/add_delete.html" with add_what="another question" add_url=add_url back_to_url=back_to_url delete_what="this quiz" delete_url=delete_url %}
         {% endif %}
 
         <br/>
@@ -71,7 +67,7 @@
         {% endfor %}
         {% include "quizapp/snips/form_actions.html" with cancel_what="these changes" back_to_url=back_to_url submit_what="these answers" %}
         <br/>
-        {% include "quizapp/snips/add_delete.html" with add_what="another question" add_url=add_url back_to_url=back_to_url delete_url=delete_url  %}
+        {% include "quizapp/snips/add_delete.html" with add_what="another question" add_url=add_url back_to_url=back_to_url delete_what="this quiz" delete_url=delete_url %}
     </form>
 
     <br/>
@@ -80,7 +76,6 @@
     <br/>
     <div>
         <a href="{% url 'quizapp:quiz_take' quiz.id %}" class="btn btn-info btn-lg" role="button">Take this quiz</a>
-        {% include "quizapp/buttons/back.html" with what="the quizzes" where=back_to_url %}
     </div>
 
     {% load static %}

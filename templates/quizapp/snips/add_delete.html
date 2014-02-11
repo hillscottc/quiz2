@@ -1,4 +1,6 @@
 <div>
     {% include "quizapp/buttons/add.html" with what=add_what add_url=add_url %}
-    {% include "quizapp/buttons/delete.html" with what="this quiz" delete_url=delete_url %}
+    {% if delete_what and delete_url %}
+        {% include "quizapp/buttons/delete.html" with what=delete_what delete_url=delete_url %}
+    {% endif %}
 </div>

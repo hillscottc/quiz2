@@ -113,14 +113,6 @@ def quiz_edit(request, quiz_id):
     """Manage set of answers"""
     quiz = Quiz.objects.get(pk=quiz_id)
     formset = QuestionFormSet()
-    # QuestionFormSet = modelformset_factory(
-    #     Question,
-    #     fields=('text',),
-    #     widgets = {'text': Textarea(attrs={'cols': 80, 'rows': 2}), },
-    #     can_delete=True,
-    #     # can_order=True,
-    #     extra=0)
-
     if request.method == 'POST':
         formset = QuestionFormSet(request.POST, request.FILES)
         if formset.is_valid():
@@ -134,7 +126,7 @@ def quiz_edit(request, quiz_id):
 
     return render(request, 'quizapp/quiz/edit.html',
                   {'quiz': quiz,
-                   'back_to_url': reverse('quizapp:quiz_index'),
+                   'back_to_url': reverse('quizapp:quiz_index',),
                    'delete_url': reverse('quizapp:quiz_delete',
                                          args=[quiz_id]),
                    'add_url': reverse('quizapp:question_add',
@@ -145,13 +137,7 @@ def quiz_edit(request, quiz_id):
 def answers_edit(request, question_id):
     """Manage set of answers"""
     question = Question.objects.get(pk=question_id)
-    # AnswerFormSet = modelformset_factory(
-    #     Answer, fields=('text', 'correct'),
-    #     can_delete=True,
-    #     # can_order=True,
-    #     extra=0)
     formset = AnswerFormSet()
-
     if request.method == 'POST':
         formset = AnswerFormSet(request.POST, request.FILES)
         if formset.is_valid():
@@ -167,4 +153,6 @@ def answers_edit(request, question_id):
                                           args=[question.quiz.id]),
                    'add_url': reverse('quizapp:answer_add',
                                       args=[question_id]),
+                   # 'delete_url': reverse('quizapp:quiz_delete',
+                   #                       args=[quiz_id]),
                    'formset': formset})
