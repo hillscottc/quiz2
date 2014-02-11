@@ -23,6 +23,13 @@ class AnswerForm(ModelForm):
     class Meta:
         model = Answer
 
+AnswerFormSet = modelformset_factory(
+    Answer, fields=('text', 'correct'),
+    can_delete=True,
+    # can_order=True,
+    extra=0
+)
+
 
 class QuizForm(ModelForm):
     class Meta:
@@ -46,9 +53,10 @@ class QuestionForm(ModelForm):
         #     pass
 
 QuestionFormSet = modelformset_factory(
-        Question,
-        fields=('text',),
-        widgets = {'text': Textarea(attrs={'cols': 80, 'rows': 2}), },
-        can_delete=True,
-        # can_order=True,
-        extra=0)
+    Question,
+    fields=('text',),
+    widgets = {'text': Textarea(attrs={'cols': 80, 'rows': 2}), },
+    can_delete=True,
+    # can_order=True,
+    extra=0
+)

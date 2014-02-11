@@ -1,12 +1,13 @@
 from django.shortcuts import HttpResponse, render, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from quiz2.apps.quiz.models import Quiz, Question, Answer, RawLog
-from quiz2.apps.quiz.forms import QuestionForm, AnswerForm, QuizForm
+from quiz2.apps.quiz.forms import (QuestionForm, QuestionFormSet,
+                                   AnswerForm, AnswerFormSet,
+                                   QuizForm)
 from quiz2.apps.quiz.quiz_mgr import log_message
 
 from django.contrib.auth.decorators import login_required
-from django.forms.models import modelformset_factory
-from django.forms import HiddenInput, Textarea
+from django.forms import HiddenInput
 from django.contrib import messages
 
 
@@ -78,7 +79,8 @@ def question_add(request, quiz_id):
         form = QuestionForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('quizapp:quiz_edit', args=(quiz_id,)))
+            return HttpResponseRedirect(reverse('quizapp:quiz_edit',
+                                                args=(quiz_id,)))
     else:
         form = QuestionForm(initial={'quiz': quiz,
                                      'user': request.user})
@@ -95,7 +97,8 @@ def answer_add(request, question_id):
         form = AnswerForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('quizapp:quiz_edit', args=(question.quiz.id,)))
+            return HttpResponseRedirect(reverse('quizapp:quiz_edit',
+                                                args=(question.quiz.id,)))
 
     else:
         form = AnswerForm(initial={'question': question})
@@ -109,13 +112,14 @@ def answer_add(request, question_id):
 def quiz_edit(request, quiz_id):
     """Manage set of answers"""
     quiz = Quiz.objects.get(pk=quiz_id)
-    QuestionFormSet = modelformset_factory(
-        Question,
-        fields=('text',),
-        widgets = {'text': Textarea(attrs={'cols': 80, 'rows': 2}), },
-        can_delete=True,
-        # can_order=True,
-        extra=0)
+    formset = QuestionFormSet()
+    # QuestionFormSet = modelformset_factory(
+    #     Question,
+    #     fields=('text',),
+    #     widgets = {'text': Textarea(attrs={'cols': 80, 'rows': 2}), },
+    #     can_delete=True,
+    #     # can_order=True,
+    #     extra=0)
 
     if request.method == 'POST':
         formset = QuestionFormSet(request.POST, request.FILES)
@@ -131,18 +135,20 @@ def quiz_edit(request, quiz_id):
     return render(request, 'quizapp/quiz/edit.html',
                   {'quiz': quiz,
                    'back_to_url': reverse('quizapp:quiz_index'),
-                   'add_url': reverse('quizapp:question_add', args=[quiz_id]),
+                   'add_url': reverse('quizapp:question_add',
+                                      args=[quiz_id]),
                    'formset': formset})
 
 
 def answers_edit(request, question_id):
     """Manage set of answers"""
     question = Question.objects.get(pk=question_id)
-    AnswerFormSet = modelformset_factory(
-        Answer, fields=('text', 'correct'),
-        can_delete=True,
-        # can_order=True,
-        extra=0)
+    # AnswerFormSet = modelformset_factory(
+    #     Answer, fields=('text', 'correct'),
+    #     can_delete=True,
+    #     # can_order=True,
+    #     extra=0)
+    formset = AnswerFormSet()
 
     if request.method == 'POST':
         formset = AnswerFormSet(request.POST, request.FILES)
@@ -150,10 +156,13 @@ def answers_edit(request, question_id):
             # do something with the formset.cleaned_data
             pass
     else:
-        formset = AnswerFormSet(queryset=Answer.objects.filter(question=question))
+        formset = AnswerFormSet(
+            queryset=Answer.objects.filter(question=question))
 
     return render(request, 'quizapp/answer/edit.html',
                   {'question': question,
-                   'back_to_url': reverse('quizapp:quiz_edit', args=[question.quiz.id]),
-                   'add_url': reverse('quizapp:answer_add', args=[question_id]),
+                   'back_to_url': reverse('quizapp:quiz_edit',
+                                          args=[question.quiz.id]),
+                   'add_url': reverse('quizapp:answer_add',
+                                      args=[question_id]),
                    'formset': formset})
